@@ -9,11 +9,11 @@ logoutButton.addEventListener('click', () => {
 });
 
 
-async function routines() {
+// async function routines() {
 
-    const routines = await getRoutines();
-    console.log('🚀 ~ file: other-page.js ~ line 14 ~ routines', routines);
-}
+//     const routines = await getRoutines();
+//     console.log('🚀 ~ file: other-page.js ~ line 14 ~ routines', routines);
+// }
 
-routines();
+// routines();
 
