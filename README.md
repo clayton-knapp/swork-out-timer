@@ -73,4 +73,57 @@ C. Timer
 
 2.Start & Stop Buttons
 
-D. 
+D. Create Routine Page
+## HTML Setup
+ -a form with input and submit button for routine name
+    -disable adding exercise until routine has been named
+ -dropdown that contains all exercises
+ -empty div to contain selected exercises. 
+ -button for "add exercise"
+ -button for "Go to this Routine". (Submit Buttton) and redirect to routine page
+ -a menu bar include: Home(go back to a list of routines), About(go to About Us), Logout
+
+
+ ## Event Listeners (create-routine.js)
+ 1. On window Load
+     -fetch list of exercises.
+     -render into the dropdown
+ 2. Submit Routine Name. 
+     -grabs input name from user.
+     -calls fetch utils function
+     -create row with the name on the routines table
+ 3. Add Exercise Button
+     -adds value of selected dropdown
+     -creates rows on junctions table with the new routine ID and selected exercise ID
+     -refetches and displays list of exercises in the empty div
+  4.  Go To This Routine Button
+       -redirect to routine details page for that routine. ../ pathing.
+       -use url search params. 
+          -const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+
+E. About Me 
+## HTML Setup
+1. 4 divs.
+    -h3-for name
+    -Image Element (1)
+    -Individual description Div
+        -Favorite Routine with link to favorite routine detail page.
+2. -a menu bar include: Home(go back to a list of routines), About(go to About Us), Logout
+
+ ## Event Listeners (about.js)
+ 1. redirect to favorite routine. 
+ 2. menu bar-redirect to home page
+
+ F. Login/SignUp Page
+ ## HTML Setup
+ 1. Follow initial template.
+ 2. Add div for google authentication(Stretch)
+
+  ## Event Listeners (app.js)
+  1. Follow initial template
+
+
+
+  
