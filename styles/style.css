@@ -141,7 +141,6 @@ button {
 
 .routine-submit {
     display: block;
-    color: blue;
     box-shadow: thistle;
     
     background-color: white;
@@ -153,4 +152,11 @@ button {
     background-color: white;
     outline: none;
 
+}
+
+.exercises-list {
+    overflow: scroll;
+    height: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

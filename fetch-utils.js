@@ -27,8 +27,7 @@ export async function getOneRoutineAndExercises(routineID) {
     const response = await client
         .from('junctions')
         .select('*, routines (*, exercises (*))')
-        .match({ routines_id: routineID })
-        .single();
+        .match({ routine_id: routineID });
 
     return checkError(response);
 }
