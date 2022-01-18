@@ -15,27 +15,21 @@
 
 <body>
     <header>
-      <h3>Create Routine</h3>
+      <h1>Create Routine</h1>
     </header>    
     <main>
       <form id="routine-form">
-        <input type="text" name="routine-name" placeholder="Routine Name Input...">
-        <button class="routine-submit">Submit Name</button>
+        <input id="name-input" type="text" name="routine-name" placeholder="Routine Name Input...">
+        <button id="name-button" class="routine-submit">Submit Name</button>
       </form>
 
-      <section class="routine-exercise-section">
-        <!-- Should display exercise names and duration within this div -->
-        <h4 class="routine-name"></h4>
-        <div class="routine-exercises">
-
-        </div>
-      </section>
-
-        <select name="exercise-dropdown" id="exercise-dropdown">
-          <!-- Add dropdown of exercises from database -->
-        </select>
-      <button class="add-exercise-btn">Add Exercise</button>
-      <button class="redirect-routine-btn">Go to this Routine</button>
+      <h2 class="routine-name"></h2> 
+    <select name="exercise-dropdown" id="exercise-dropdown">
+        <!-- Add dropdown of exercises from database -->
+    </select>
+    <button class="add-exercise-btn">Add Exercise</button>
+    <div class="exercises-list"></div>
+    <button class="redirect-routine-btn">Go to this Routine</button>
 
     </main>
     <footer>

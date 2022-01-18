@@ -53,6 +53,9 @@ B. Routine Detail
   -fetch and display exercises for that routine
 2.a click event listener for the button to redirect user to /timer countdown page
 
+HINT: -const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
 C. Timer
 ## HTML Setup
   -a header to inject the name of the routine
@@ -99,8 +102,7 @@ D. Create Routine Page
   4.  Go To This Routine Button
        -redirect to routine details page for that routine. ../ pathing.
        -use url search params. 
-          -const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
+
 
 
 E. About Me 

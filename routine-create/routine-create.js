@@ -3,34 +3,23 @@ import { getOneRoutineAndExercises, createRoutineName, addExerciseToRoutine, get
 
 // grab the DOM
 const formEL = document.querySelector('#routine-form');
-const routineExerciseEL = document.querySelector('.routine-exercises');
+const exercisesListEL = document.querySelector('.exercises-list');
 const exerciseDropdownEL = document.querySelector('#exercise-dropdown');
 const addExerciseBtnEL = document.querySelector('.add-exercise-btn');
 const redirectRoutineBtnEL = document.querySelector('.redirect-routine-btn');
 const routineNameEL = document.querySelector('.routine-name');
 const logoutButton = document.getElementById('logout');
+const nameInputEL = document.getElementById('name-input');
+const nameButtonEL = document.getElementById('name-button');
+
+let routineID = 0;
 
 
 
 checkAuth();
 
-// {"message":"new row violates row-level security policy for table \"routines\"","code":"42501","details":null,"hint":null}
-// {"message":"new row violates row-level security policy for table \"routines\"","code":"42501","details":null,"hint":null}
-
-
-formEL.addEventListener('submit', async(e) => {
-    e.preventDefault();
-    const data = new FormData(formEL);
-    const name = data.get('routine-name');
-    const createName = await createRoutineName(name);
-    console.log('🚀 ~ file: routine-create.js ~ line 19 ~ formEL.addEventListener ~ createName', createName);
-    formEL.reset();
-});
-
-
 window.addEventListener('load', async() => {
     const exercises = await getAllExercise();
-    console.log('🚀 ~ file: routine-create.js ~ line 33 ~ window.addEventListener ~ exercises', exercises);
 
     for (let exercise of exercises) {
         const optionEL = document.createElement('option');
@@ -40,7 +29,67 @@ window.addEventListener('load', async() => {
 
         exerciseDropdownEL.append(optionEL);
     }
+
+    exerciseDropdownEL.disabled = true;
+    addExerciseBtnEL.disabled = true;
+    redirectRoutineBtnEL.disabled = true;
 });
+
+formEL.addEventListener('submit', async(e) => {
+    e.preventDefault();
+    const data = new FormData(formEL);
+    const name = data.get('routine-name');
+    const userRoutineObj = await createRoutineName(name);
+    routineID = userRoutineObj.id;
+    console.log(userRoutineObj);
+
+    routineNameEL.textContent = userRoutineObj.name;
+
+    formEL.reset();
+
+    exerciseDropdownEL.disabled = false;
+    addExerciseBtnEL.disabled = false;
+    redirectRoutineBtnEL.disabled = false;
+
+    nameInputEL.disabled = true;
+    nameButtonEL.disabled = true;
+
+
+});
+
+addExerciseBtnEL.addEventListener('click', async() => {
+    const exerciseID = exerciseDropdownEL.value;
+
+    const addedExercise = await addExerciseToRoutine(routineID, exerciseID);
+
+    //fetch and display this routines list of exercises
+    fetchAndDisplayExercises(routineID);
+});
+
+async function fetchAndDisplayExercises(routineID) {
+    const exercises = await getOneRoutineAndExercises(routineID);
+    // console.log(exercises[0].routines.exercises);
+
+    exercisesListEL.textContent = '';
+    for (let exercise of exercises[0].routines.exercises) {
+        const exerciseEl = document.createElement('div');
+        const exerciseNameEl = document.createElement('p');
+
+        exerciseNameEl.textContent = `${exercise.name} - ${exercise.duration} seconds`;
+        exerciseEl.classList.add('exercise');
+
+        exerciseEl.append(exerciseNameEl);
+
+        exercisesListEL.append(exerciseEl);
+    }
+}
+
+
+// add event listener for this routine detail page
+redirectRoutineBtnEL.addEventListener('click', ()=> {
+    window.location.href = `../routine-detail/id?=${routineID}`;
+});
+
 
 
 

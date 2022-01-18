@@ -27,8 +27,7 @@ export async function getOneRoutineAndExercises(routineID) {
     const response = await client
         .from('junctions')
         .select('*, routines (*, exercises (*))')
-        .match({ routines_id: routineID })
-        .single();
+        .match({ routine_id: routineID });
 
     return checkError(response);
 }
@@ -37,7 +36,8 @@ export async function getOneRoutineAndExercises(routineID) {
 export async function createRoutineName(routineName) {
     const response = await client
         .from('routines')
-        .insert([{ name: routineName }]);
+        .insert([{ name: routineName }])
+        .single();
 
 
     return checkError(response);
