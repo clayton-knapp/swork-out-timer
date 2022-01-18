@@ -47,7 +47,7 @@ section {
 
 header {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     background-color: var(--color3);
     height: var(--header-height);
     box-shadow: var(--shadow);
@@ -75,12 +75,13 @@ p {
 }
   
 footer {
-    position: fixed;
+    position: absolute;
     width: 100%;
     bottom: 0;
+    margin-bottom: 5px;
     height: var(--footer-height);
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     background-color: var(--color3);
     box-shadow: var(--shadow);
 }
@@ -106,9 +107,6 @@ footer {
   }
 
 #logout {
-    position: fixed;
-    right: 20px;
-    top: 90px;
 }
 
 .auth-main {
@@ -128,4 +126,31 @@ footer {
 
 .auth-container button {
     margin: 10px;
+}
+
+input {
+    border: 1.5px solid black
+}
+
+button {
+    padding: 4px;
+    margin: 5px auto;
+    border: 1px solid black;
+
+}
+
+.routine-submit {
+    display: block;
+    color: blue;
+    box-shadow: thistle;
+    
+    background-color: white;
+}
+
+.add-exercise-btn,
+.redirect-routine-btn {
+
+    background-color: white;
+    outline: none;
+
 }
