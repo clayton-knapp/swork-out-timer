@@ -15,6 +15,13 @@ export async function getAllRoutines() {
 
     return checkError(response);
 }
+export async function getAllExercise() {
+    const response = await client
+        .from('exercises')
+        .select();
+
+    return checkError(response);
+}
 
 export async function getOneRoutineAndExercises(routineID) {
     const response = await client
