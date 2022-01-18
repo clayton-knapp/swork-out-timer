@@ -8,13 +8,42 @@ export async function getUser() {
     return client.auth.session() && client.auth.session().user;
 }
 
-// export async function getRoutines() {
-//     const response = await client
-//         .from('junctions')
-//         .select('*, routines (*, exercises (*))');
+export async function getAllRoutines() {
+    const response = await client
+        .from('junctions')
+        .select('*, routines (*, exercises (*))');
 
-//     return checkError(response);
-// }
+    return checkError(response);
+}
+
+export async function getOneRoutineAndExercises(routineID) {
+    const response = await client
+        .from('junctions')
+        .select('*, routines (*, exercises (*))')
+        .match({ routines_id: routineID })
+        .single();
+
+    return checkError(response);
+}
+
+
+export async function createRoutineName(routineName) {
+    const response = await client
+        .from('routines')
+        .insert([{ name: routineName }]);
+
+
+    return checkError(response);
+}
+
+export async function addExerciseToRoutine(routineID, exerciseID) {
+    const response = await client
+        .from('junctions')
+        .insert([{ routine_id: routineID, exercise_id: exerciseID }]);
+
+
+    return checkError(response);
+}
 
 
 export async function checkAuth() {
