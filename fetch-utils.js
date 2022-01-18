@@ -37,7 +37,8 @@ export async function getOneRoutineAndExercises(routineID) {
 export async function createRoutineName(routineName) {
     const response = await client
         .from('routines')
-        .insert([{ name: routineName }]);
+        .insert([{ name: routineName }])
+        .single();
 
 
     return checkError(response);
