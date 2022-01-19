@@ -8,13 +8,22 @@ export async function getUser() {
     return client.auth.session() && client.auth.session().user;
 }
 
-export async function getAllRoutines() {
+export async function getAllRoutinesAndExercises() {
     const response = await client
         .from('junctions')
         .select('*, routines (*, exercises (*))');
 
     return checkError(response);
 }
+
+export async function getAllRoutines() {
+    const response = await client
+        .from('routines')
+        .select();
+
+    return checkError(response);
+}
+
 export async function getAllExercise() {
     const response = await client
         .from('exercises')
@@ -61,7 +70,7 @@ export async function checkAuth() {
 
 export async function redirectIfLoggedIn() {
     if (await getUser()) {
-        location.replace('./other-page');
+        location.replace('./routine-list');
     }
 }
 

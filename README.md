@@ -48,7 +48,7 @@ B. Routine Detail
   -s button to start workout
   -a menu bar include: Home(go back to a list of routines), About(go to About Us), Logout
 
-## Event Listeners (routine-detail.js
+## Event Listeners (routine-detail.js)
 1.on window load
   -fetch and display exercises for that routine
 2.a click event listener for the button to redirect user to /timer countdown page

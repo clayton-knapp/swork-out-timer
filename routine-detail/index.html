@@ -15,18 +15,31 @@
 
 <body>
     <header>
-        <div class="gutter-right logo">
-            <img src="../assets/big-logo.png" />
-        </div>
+      <h1>Routine Details Page</h1>
     </header>    
-    <button id="logout">Logout</button>
     <main>
-        <h1>You are logged in!</h1>
+      <form id="routine-form">
+        <input id="name-input" type="text" name="routine-name" placeholder="Routine Name Input...">
+        <button id="name-button" class="routine-submit">Submit Name</button>
+      </form>
+
+      <h2 class="routine-name"></h2> 
+    <select name="exercise-dropdown" id="exercise-dropdown">
+        <!-- Add dropdown of exercises from database -->
+    </select>
+    <button class="add-exercise-btn">Add Exercise</button>
+    <div class="exercises-list"></div>
+    <button class="redirect-routine-btn">Go to this Routine</button>
+
     </main>
     <footer>
-        <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
+      <div class="navbar">
+        <a id="home">Home</a>
+        <button id="logout">Logout</button>
+        <a id="user">About</a>
+      </div>
     </footer>
-    <script type="module" src="./other-page.js"></script>
+    <script type="module" src="./routine-detail.js"></script>
 </body>
 
 </html>
