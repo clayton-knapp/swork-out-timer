@@ -34,7 +34,7 @@ window.addEventListener('load', async() =>{
 });
 
 // let time = 3;
-let durations = [3, 4, 5];
+let durations = [5, 4, 5];
 let i = 0;
 
 startButton.addEventListener('click', ()=>{
@@ -56,7 +56,7 @@ stopButton.addEventListener('click', () =>{
 function decrementTimer(array, i){
     if (array[i] > 0){
         array[i]--;
-        timerEl.textContent = array [i];
+        timerEl.textContent = array[i];
     }
     else if (array [i] <= 0) {
         clearInterval();
