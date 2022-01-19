@@ -85,6 +85,11 @@ export async function signInUser(email, password){
 
     return response.user;
 }
+export async function signInUserFB(){
+    const response = await client.auth.signIn({ provider: 'facebook' });
+
+    return response.user;
+}
 
 export async function logout() {
     await client.auth.signOut();

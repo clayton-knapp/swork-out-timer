@@ -201,3 +201,13 @@ button {
     padding: none;
     text-align: center;
 }
+
+.middleDiv {
+    display: flex;
+}
+
+.middle {
+    color: blue;
+    text-align: center;
+    justify-content: center;
+}
