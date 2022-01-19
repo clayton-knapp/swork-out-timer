@@ -13,7 +13,9 @@ const logoutButton = document.getElementById('logout');
 logoutButton.addEventListener('click', () => {
     logout();
 });
+
 let arr = [];
+
 window.addEventListener('load', async() => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
@@ -51,12 +53,6 @@ startWorkoutBtnEl.addEventListener('click', () => {
 
 
 
-
-
-
-
-
-
 function convertHMS(value) {
     const sec = parseInt(value, 10); // convert value to number if it's string
     // let hours   = Math.floor(sec / 3600); // get hours
@@ -76,4 +72,3 @@ function convertHMS(value) {
 // }
 
 // routines();
-
