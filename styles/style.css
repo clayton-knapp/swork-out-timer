@@ -136,22 +136,40 @@ button {
     padding: 4px;
     margin: 5px auto;
     border: 1px solid black;
-
 }
 
 .routine-submit {
     display: block;
-    box-shadow: thistle;
-    
+    box-shadow: thistle; 
     background-color: white;
 }
 
 .add-exercise-btn,
-.redirect-routine-btn {
-
+.redirect-routine-btn,
+.create-routine-btn,
+.start-workout {
     background-color: white;
     outline: none;
+}
 
+
+.create-routine-btn,
+.start-workout {
+    position: fixed;
+    bottom: 50px;
+}
+
+.start-workout {
+    border-radius: 50%;
+    height: 70px;
+    width:70px;
+}
+
+.start-workout:hover {
+    border-radius: 50%;
+    height: 70px;
+    background-color: rgb(19,201,208);
+    color: black;
 }
 
 .exercises-list {
@@ -159,4 +177,12 @@ button {
     height: 200px;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.detail-header {
+    display: block;
+    font-size: 20px;
+    margin: 0;
+    padding: none;
+    text-align: center;
 }
