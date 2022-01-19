@@ -186,3 +186,18 @@ button {
     padding: none;
     text-align: center;
 }
+
+.about-us, 
+.our-story {
+    border: solid 2px black;
+    height: 70px;
+    width: 200px;
+    margin: 20px;
+}
+
+img {
+    border: solid 2px black;
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+}

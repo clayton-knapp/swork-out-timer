@@ -12,7 +12,9 @@ const logoutButton = document.getElementById('logout');
 logoutButton.addEventListener('click', () => {
     logout();
 });
+
 let arr = [];
+
 window.addEventListener('load', async() => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
@@ -30,12 +32,4 @@ window.addEventListener('load', async() => {
         durationEl.textContent = `Duration: ${sum}`;
     }
 });
-
-// async function routines() {
-
-//     const routines = await getRoutines();
-//     console.log('🚀 ~ file: other-page.js ~ line 14 ~ routines', routines);
-// }
-
-// routines();
 
