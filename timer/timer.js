@@ -12,7 +12,6 @@ const finishWorkout = document.querySelector('#finish-workout');
 const params = new URLSearchParams(window.location.search);
 const routineId = params.get('id');
 
-let time = 3;
 
 
 
@@ -34,8 +33,17 @@ window.addEventListener('load', async() =>{
    
 });
 
+// let time = 3;
+let durations = [3, 4, 5];
+let i = 0;
+
 startButton.addEventListener('click', ()=>{
-    const timer = setInterval(decrementTimer, 1000);
+    const timer = setInterval(decrementTimer, 1000, durations, i);
+
+    setTimeout(()=>{
+        console.log(`it's been ${durations[i]} seconds`);
+        setInterval(decrementTimer, 1000, durations, i);
+    }, durations[i] * 1000);
 
      
 });
@@ -43,20 +51,17 @@ startButton.addEventListener('click', ()=>{
 stopButton.addEventListener('click', () =>{
     
 
-    
 });
 
-
-
-function decrementTimer(){
-    if (time > 0){
-        time--;
-        timerEl.textContent = time;
+function decrementTimer(array, i){
+    if (array[i] > 0){
+        array[i]--;
+        timerEl.textContent = array [i];
     }
-    else {
-        clearInterval(timer);
+    else if (array [i] <= 0) {
+        clearInterval();
     }
-    console.log(time);
+    console.log(array [i]);
 }
 
     

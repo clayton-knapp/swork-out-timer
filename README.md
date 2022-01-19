@@ -53,7 +53,7 @@ B. Routine Detail
   -fetch and display exercises for that routine
 2.a click event listener for the button to redirect user to /timer countdown page
 
-HINT: -const params = new URLSearchParams(window.location.search);
+HINT:  -const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
 C. Timer
