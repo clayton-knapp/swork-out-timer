@@ -87,7 +87,7 @@ async function fetchAndDisplayExercises(routineID) {
 
 // add event listener for this routine detail page
 redirectRoutineBtnEL.addEventListener('click', ()=> {
-    window.location.href = `../routine-detail/id?=${routineID}`;
+    window.location.href = `../routine-detail/?id=${routineID}`;
 });
 
 

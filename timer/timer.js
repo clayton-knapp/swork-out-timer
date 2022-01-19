@@ -26,7 +26,7 @@ logoutButton.addEventListener('click', () => {
 window.addEventListener('load', async() =>{
     const routines = await getOneRoutineAndExercises(routineId);
     exerciseArray = routines[0].routines.exercises;
-   console.log(exerciseArray[i])
+   console.log(exerciseArray[i]);
     routineNameEl.textContent = routines[0].routines.name;
  
     for (let exercise of exerciseArray) {
