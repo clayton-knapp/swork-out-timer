@@ -26,7 +26,7 @@ logoutButton.addEventListener('click', () => {
 window.addEventListener('load', async() =>{
     const routines = await getOneRoutineAndExercises(routineId);
     exerciseArray = routines[0].routines.exercises;
-   console.log(exerciseArray[i].duration);
+   console.log(exerciseArray[i])
     routineNameEl.textContent = routines[0].routines.name;
  
     for (let exercise of exerciseArray) {
@@ -40,8 +40,13 @@ window.addEventListener('load', async() =>{
 startButton.addEventListener('click', async()=>{
     const routines = await getOneRoutineAndExercises(routineId);
     exerciseArray = routines[0].routines.exercises;
-    console.log(exerciseArray[i].duration);
-    intervalAndTimeout(exerciseArray[i].duration, i);
+    const justDurations = exerciseArray.map((exercise)=>{
+        return exercise.duration;
+       
+    });
+    console.log(justDurations);
+
+    intervalAndTimeout(justDurations, i);
  
 });
 
