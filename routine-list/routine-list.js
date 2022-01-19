@@ -11,7 +11,6 @@ logoutButton.addEventListener('click', () => {
     logout();
 });
 
-
 window.addEventListener('load', async() => {
     const routines = await getAllRoutines();
     for (let routine of routines) {
@@ -23,7 +22,4 @@ window.addEventListener('load', async() => {
 createRoutineBtnEl.addEventListener('click', () => {
     window.location.href = '../routine-create';
 });
-
-
-
 
