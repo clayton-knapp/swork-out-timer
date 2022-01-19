@@ -8,3 +8,17 @@ export function renderRoutines(routine) {
     routineEl.append(routineLink);
     return routineEl;
 }
+
+
+export function renderExercises(exercise) {
+    const div = document.createElement('div');
+    const exerciseLink = document.createElement('a');
+    exerciseLink.href = `#`;
+    div.classList.add('exercise-workout-list');
+    
+    exerciseLink.textContent = `${exercise.name} - ${exercise.duration} seconds`;
+
+    div.append(exerciseLink);
+    return div;
+
+}

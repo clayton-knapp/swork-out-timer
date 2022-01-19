@@ -179,6 +179,21 @@ button {
     margin-bottom: 20px;
 }
 
+.exercise-workout-list {
+    background-color: rgb(19,201,208);
+
+}
+
+.exercise-workout-list a {
+    text-decoration: none;
+}
+
+.exercise-workout-list a:hover {
+    text-decoration: none;
+    color: white;
+    cursor: url('../assets/dumbbell.png'), auto;
+}
+
 .detail-header {
     display: block;
     font-size: 20px;
