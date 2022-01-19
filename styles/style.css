@@ -179,10 +179,40 @@ button {
     margin-bottom: 20px;
 }
 
+.exercise-workout-list {
+    background-color: rgb(19,201,208);
+
+}
+
+.exercise-workout-list a {
+    text-decoration: none;
+}
+
+.exercise-workout-list a:hover {
+    text-decoration: none;
+    color: white;
+    cursor: url('../assets/dumbbell.png'), auto;
+}
+
 .detail-header {
     display: block;
     font-size: 20px;
     margin: 0;
     padding: none;
     text-align: center;
+}
+
+.about-us, 
+.our-story {
+    border: solid 2px black;
+    height: 70px;
+    width: 200px;
+    margin: 20px;
+}
+
+img {
+    border: solid 2px black;
+    height: 50px;
+    width: 50px;
+    margin: 10px;
 }
