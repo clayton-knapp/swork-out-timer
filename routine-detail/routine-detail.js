@@ -1,4 +1,5 @@
 import { checkAuth, getOneRoutineAndExercises, logout } from '../fetch-utils.js';
+import { renderExercises } from '../render-utils.js';
 
 checkAuth();
 
@@ -17,6 +18,7 @@ window.addEventListener('load', async() => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
     const getRoutine = await getOneRoutineAndExercises(id);
+    console.log("🚀 ~ file: routine-detail.js ~ line 20 ~ window.addEventListener ~ getRoutine", getRoutine)
     console.log(getRoutine[0].routines);
     const routineName = getRoutine[0].routines.name;
     routineNameEl.textContent = `${routineName}`;
@@ -31,7 +33,28 @@ window.addEventListener('load', async() => {
         
         durationEl.textContent = `Duration: ${convertHMS(sum)} min`;
     }
+    
+
+    for (const exercise of getRoutine[0].routines.exercises) {
+        const exerciseWorkout = renderExercises(exercise);
+
+        exerciseListEl.append(exerciseWorkout);
+    }
+
+
 });
+
+
+startWorkoutBtnEl.addEventListener('click', () => {
+    window.location.href = '../timer';
+});
+
+
+
+
+
+
+
 
 
 function convertHMS(value) {
@@ -41,8 +64,8 @@ function convertHMS(value) {
     let seconds = sec - (minutes * 60); //  get seconds
     // add 0 if value < 10; Example: 2 => 02
     // if (hours   < 10) {hours   = "0"+hours;}
-    if (minutes < 10) {minutes = "0" + minutes;}
-    if (seconds < 10) {seconds = "0" + seconds;}
+    if (minutes < 10) {minutes = '0' + minutes;}
+    if (seconds < 10) {seconds = '0' + seconds;}
     return minutes + ':' + seconds; // Return is HH : MM : SS
 }
 
