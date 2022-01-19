@@ -15,18 +15,28 @@
 
 <body>
     <header>
-        <div class="gutter-right logo">
-            <img src="../assets/big-logo.png" />
-        </div>
+      <h1 id="routine-name"></h1>
     </header>    
-    <button id="logout">Logout</button>
     <main>
-        <h1>You are logged in!</h1>
+        <div id="current-exercise"></div>
+        <div id="icon">Icon</div>
+        <div id="timer">Timer</div>
+        <button class="button" id="start-button">Start Workout</button>
+        <button class="button" id="stop-button">Stop Workout</button>
+        <div id="finish-workout"></div>
+
+
+
+       
     </main>
     <footer>
-        <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
+        <div class="navbar">
+            <a id="home">Home</a>
+            <button id="logout">Logout</button>
+            <a id="user">About</a>
+          </div>
     </footer>
-    <script type="module" src="./other-page.js"></script>
+    <script type="module" src="./timer.js"></script>
 </body>
 
 </html>
