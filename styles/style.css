@@ -241,6 +241,28 @@ button {
     margin: 10px;
 }
 
+
+#icon {
+    background-image: url('../assets/workouticon.png');
+    background-size: contain;
+    height: 200px;
+    width: 200px
+}
+
+#timer {
+    font-size: 4rem;
+    margin: 30px;
+}
+
+.start-stop-button {
+    height: 40px;
+    width: 160px;
+    border-radius: 10px;
+    margin-top: 0px;
+    margin-bottom: 20px
+}
+
+
 .our-team {
     overflow: scroll;
     height: 300px;
