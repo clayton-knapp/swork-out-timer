@@ -10,7 +10,7 @@ const startButton = document.querySelector('#start-button');
 const pauseButton = document.querySelector('#pause-button');
 const endButton = document.querySelector('#end-button');
 const buttonContainer = document.querySelector('#button-container');
-
+const audioPlayer = document.querySelector('#audio-player');
 
 const params = new URLSearchParams(window.location.search);
 const routineId = params.get('id');
@@ -165,7 +165,13 @@ function decrementAndDisplayTime(durationsArray, i){
         }
         console.log(durationsArray);
     }
+
+    if (durationsArray[i] <= 3 && durationsArray[i] >= 1) {
+        audioPlayer.src = `../assets/tick.wav`;
+    }
+
     else if (durationsArray[i] <= 0) {
+        audioPlayer.src = `../assets/buzzer.mp3`;
         clearInterval(timer);
     }
 }
