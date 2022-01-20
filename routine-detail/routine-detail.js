@@ -22,6 +22,7 @@ window.addEventListener('load', async() => {
     // const params = new URLSearchParams(window.location.search);
     // const id = params.get('id');
     const getRoutine = await getOneRoutineAndExercises(id);
+
     const routineName = getRoutine[0].routines.name;
     routineNameEl.textContent = `${routineName}`;
 
@@ -45,7 +46,9 @@ window.addEventListener('load', async() => {
 
 startWorkoutBtnEl.addEventListener('click', () => {
     window.location.href = `../timer/?id=${id}`;
+
 });
+
 
 function convertHMS(value) {
     const sec = parseInt(value, 10); // convert value to number if it's string

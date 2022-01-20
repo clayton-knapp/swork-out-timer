@@ -20,6 +20,7 @@ let exerciseArray = [];
 // let time = 3;
 let durations = [3, 4, 5];
 let i = 0;
+
 // let remainingTime;
 let timer = '';
 let waitTimer = '';
@@ -69,9 +70,8 @@ startButton.addEventListener('click', async()=>{
 //     if (waitTimer) {
 //         clearTimeout(waitTimer);
 //     }
-   
-
 // });
+
 
 function intervalAndTimeout(durationsArray, namesArray){
     //clear button container

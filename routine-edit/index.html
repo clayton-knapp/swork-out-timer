@@ -10,27 +10,36 @@
     <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/home.css">
-    <link rel="icon" href="../assets/Sworkout_3.png" type="image/icon type">
     <title>Document</title>
 </head>
 
 <body>
     <header>
-      <h1>List of Routines</h1>
-    </header>
+      <h1>Edit Routines</h1>
+    </header>    
     <main>
-      <div class="display-routine-list"></div>
-      <button class="create-routine-btn">Create Routine</button>
-      <button class="edit-routine-btn">Edit Routine</button>
+      <select class="display-routine-selection">
+
+      </select>
+      <form>
+        <label>
+          Change Name
+          <input name="newName" type="text">
+        </label>
+        <button>Submit</button>
+      </form>
+      <div class="exercises-list-Delete">
+
+      </div>
     </main>
     <footer>
       <div class="navbar">
-        <a href="../routine-list" id="home"><img src="../assets/home-icon.png" width="30px" height="30px"></a>
-        <button id="logout"><img src="../assets/logout.png" width="30px" height="30px"></button>
-        <a href="../about" id="user"><img src="../assets/about.png" width="30px" height="30px"></a>
+        <a href="../routine-list" id="home">Home</a>
+        <button id="logout">Logout</button>
+        <a href="../about" id="user">About</a>
       </div>
     </footer>
-    <script type="module" src="./routine-list.js"></script>
+    <script type="module" src="./routine-edit.js"></script>
 </body>
 
 </html>

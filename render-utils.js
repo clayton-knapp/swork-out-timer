@@ -1,3 +1,5 @@
+import { getAllRoutinesByUserID } from './fetch-utils.js';
+
 export function renderRoutines(routine) {
     const routineLink = document.createElement('a');
     routineLink.href = `../routine-detail/?id=${routine.id}`;
@@ -21,4 +23,16 @@ export function renderExercises(exercise) {
     div.append(exerciseLink);
     return div;
 
+}
+
+
+export async function renderRoutinesInEdit(el) {
+    const routines = await getAllRoutinesByUserID();
+    for (let routine of routines) {
+      const optionEL = document.createElement('option');
+
+      optionEL.textContent = `${routine.name}`;
+      optionEL.value = routine.id;
+      el.append(optionEL);
+  }
 }
