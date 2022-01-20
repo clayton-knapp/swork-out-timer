@@ -229,7 +229,7 @@ img {
     margin: 30px;
 }
 
-#start-button, #stop-button {
+.start-stop-button {
     height: 40px;
     width: 160px;
     border-radius: 10px;

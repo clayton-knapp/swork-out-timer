@@ -9,6 +9,9 @@ const timerEl = document.querySelector('#timer');
 const startButton = document.querySelector('#start-button');
 const stopButton = document.querySelector('#stop-button');
 const finishWorkout = document.querySelector('#finish-workout');
+const buttonContainer = document.querySelector('#button-container');
+
+
 const params = new URLSearchParams(window.location.search);
 const routineId = params.get('id');
 
@@ -17,7 +20,10 @@ let exerciseArray = [];
 // let time = 3;
 let durations = [3, 4, 5];
 let i = 0;
+// let remainingTime;
 let timer = '';
+let waitTimer = '';
+
 
 logoutButton.addEventListener('click', () => {
     logout();
@@ -26,12 +32,13 @@ logoutButton.addEventListener('click', () => {
 window.addEventListener('load', async() =>{
     const routines = await getOneRoutineAndExercises(routineId);
     exerciseArray = routines[0].routines.exercises;
-    routineNameEl.textContent = routines[0].routines.name;
- 
-    for (let exercise of exerciseArray) {
-        currentExerciseEl.textContent = exercise.name;
 
-    }
+    // Display routine name
+    routineNameEl.textContent = routines[0].routines.name;
+
+    // Display first exercise
+    currentExerciseEl.textContent = `First Up: ${exerciseArray[0].name}`;
+
 
    
 });
@@ -48,29 +55,28 @@ startButton.addEventListener('click', async()=>{
         return exercise.name;
     });
 
+    intervalAndTimeout(justDurations, justNames);
 
-    // const justExerciseNamesAndDurations = exerciseArray.map((exercise)=>{
-    //     return { name: exercise.name, duration: exercise.duration };
-    // });
-
-    // console.log(justExerciseNamesAndDurations, justExerciseNamesAndDurations[0], justExerciseNamesAndDurations[0].duration);
-
-
-    intervalAndTimeout(justDurations, justNames, i);
  
 });
 
-stopButton.addEventListener('click', () =>{
+// stopButton.addEventListener('click', () =>{
    
-    // isStopped = true;
-    if (timer) {
-        clearInterval(timer);
-    }
+//     // isStopped = true;
+//     if (timer) {
+//         clearInterval(timer);
+//     }
+//     if (waitTimer) {
+//         clearTimeout(waitTimer);
+//     }
    
 
-});
+// });
 
-function intervalAndTimeout(durationsArray, namesArray, i){
+function intervalAndTimeout(durationsArray, namesArray){
+    //clear button container
+    buttonContainer.textContent = '';
+
     // display initial duration
     if (durationsArray[i] < 10) {
         timerEl.textContent = `00:0${ durationsArray[i] }`;
@@ -82,14 +88,31 @@ function intervalAndTimeout(durationsArray, namesArray, i){
     //display initial name
     currentExerciseEl.textContent = namesArray[i];
 
+    //render unique stop button
+    const tempStopButton = document.createElement('button');
+    tempStopButton.classList.add('start-stop-button');
+    tempStopButton.textContent = `Stop ${namesArray[i]}`;
+    buttonContainer.append(tempStopButton);
+
+    tempStopButton.addEventListener('click', ()=> {
+        if (timer) {
+            clearInterval(timer);
+        }
+        if (waitTimer) {
+            clearTimeout(waitTimer);
+        }
+    });
+
 
     // run timer for selected duration
     timer = setInterval(decrementAndDisplayTime, 1000, durationsArray, i);
-  
+    
+    console.log('i=', i);
+
     // sets timeout for current duration, then increments[i], then reruns function recursively
-    setTimeout(()=>{
-        // console.log(`it's been ${durationsArray[i]} seconds`);
+    waitTimer = setTimeout(()=>{
         i++;
+        // console.log(`it's been ${durationsArray[i]} seconds`);
         intervalAndTimeout(durationsArray, namesArray, i);
     }, durationsArray[i] * 1000 + 1000);
 }
