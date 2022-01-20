@@ -171,7 +171,7 @@ function decrementAndDisplayTime(durationsArray, i){
     }
 
     else if (durationsArray[i] <= 0) {
-        audioPlayer.src = `../assets/buzzer.mp3`;
+        audioPlayer.src = `../assets/short-buzzer.m4a`;
         clearInterval(timer);
     }
 }
