@@ -1,4 +1,5 @@
 import { checkAuth, logout, getAllRoutines, updateRoutineName } from '../fetch-utils.js';
+import { renderRoutinesInEdit } from '../render-utils.js';
 // import { renderRoutines } from '../render-utils.js';
 
 checkAuth();
@@ -15,15 +16,8 @@ logoutButton.addEventListener('click', () => {
 let id = 0;
 
 window.addEventListener('load', async() => {
-    const routines = await getAllRoutines();
-    console.log("🚀 ~ file: routine-edit.js ~ line 19 ~ window.addEventListener ~ routines", routines)
-    for (let routine of routines) {
-      const optionEL = document.createElement('option');
-
-      optionEL.textContent = `${routine.name}`;
-      optionEL.value = routine.id;
-      routineListEl.append(optionEL);
-  }
+  // const routines = await getAllRoutines();
+  renderRoutinesInEdit(routineListEl);
 
 });
 
@@ -31,11 +25,16 @@ formEl.addEventListener('submit', async(e) => {
   e.preventDefault();
   const data = new FormData(formEl);
   const name = data.get('newName');
-  console.log("🚀 ~ file: routine-edit.js ~ line 34 ~ formEl.addEventListener ~ name", name)
+
   id = routineListEl.value;
-  console.log("🚀 ~ file: routine-edit.js ~ line 35 ~ formEl.addEventListener ~ id", id)
+
   await updateRoutineName(name, id);
+  routineListEl.textContent = '';
+  renderRoutinesInEdit(routineListEl)
+
 });
+
+
 
 
 
