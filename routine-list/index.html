@@ -11,17 +11,23 @@
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/home.css">
     <link rel="icon" href="../assets/Sworkout_3.png" type="image/icon type">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla&family=Pacifico&family=Space+Mono&display=swap');</style>
     <title>Document</title>
 </head>
 
 <body>
     <header>
-      <h1>List of Routines</h1>
+      <div id="animation-div"><img src="../assets/Sworkout.gif" width="100px" height="100px" alt=""></div>
     </header>
     <main>
-      <div class="display-routine-list"></div>
+      <div class="auth-container">
+      <h1>List of Routines</h1>
+      
+      <div class="display-routine-list" id="routine-list"></div>
       <button class="create-routine-btn">Create Routine</button>
       <button class="edit-routine-btn">Edit Routine</button>
+    </div>
     </main>
     <footer>
       <div class="navbar">
