@@ -4,24 +4,24 @@ checkAuth();
 const routineNameEl = document.querySelector('#routine-name');
 const logoutButton = document.getElementById('logout');
 const currentExerciseEl = document.querySelector('#current-exercise');
-const iconEl = document.querySelector('#icon');
+// const iconEl = document.querySelector('#icon');
 const timerEl = document.querySelector('#timer');
 const startButton = document.querySelector('#start-button');
-const stopButton = document.querySelector('#stop-button');
-const finishWorkout = document.querySelector('#finish-workout');
+const pauseButton = document.querySelector('#pause-button');
+const endButton = document.querySelector('#end-button');
 const buttonContainer = document.querySelector('#button-container');
 
 
 const params = new URLSearchParams(window.location.search);
 const routineId = params.get('id');
 
-let exerciseArray = [];
+let routines = [];
+let exercises = [];
+let justDurations = [];
+let justNames = [];
 
-// let time = 3;
-let durations = [3, 4, 5];
 let i = 0;
 
-// let remainingTime;
 let timer = '';
 let waitTimer = '';
 
@@ -31,46 +31,76 @@ logoutButton.addEventListener('click', () => {
 });
 
 window.addEventListener('load', async() =>{
-    const routines = await getOneRoutineAndExercises(routineId);
-    exerciseArray = routines[0].routines.exercises;
+    //fetch routins and exercises joined from supabase
+    routines = await getOneRoutineAndExercises(routineId);
+
+    //make new array for the nested exercises
+    exercises = routines[0].routines.exercises;
+
+    //map a new array for just the durations
+    justDurations = exercises.map((exercise)=>{
+        return exercise.duration;
+    });
+
+        // map a new array for just the exercise names
+    justNames = exercises.map((exercise)=>{
+        return exercise.name;
+    });
 
     // Display routine name
     routineNameEl.textContent = routines[0].routines.name;
 
     // Display first exercise
-    currentExerciseEl.textContent = `First Up: ${exerciseArray[0].name}`;
+    currentExerciseEl.textContent = `First Up: ${exercises[0].name}`;
+
+    //Hide the pause button
+    pauseButton.style.display = 'none';
 
 
    
 });
 
 startButton.addEventListener('click', async()=>{
-    const routines = await getOneRoutineAndExercises(routineId);
-    exerciseArray = routines[0].routines.exercises;
 
-    const justDurations = exerciseArray.map((exercise)=>{
-        return exercise.duration;
-    });
-
-    const justNames = exerciseArray.map((exercise)=>{
-        return exercise.name;
-    });
-
+    //call inverval timer + timeout function with durations and names
     intervalAndTimeout(justDurations, justNames);
 
- 
+    //when clicking start hide the button (pause button generated)
+    startButton.style.display = 'none';
+
+
+    pauseButton.textContent = `Pause`;
+    // show the pause button
+    pauseButton.style.display = 'block';
 });
 
-// stopButton.addEventListener('click', () =>{
+pauseButton.addEventListener('click', () =>{
    
-//     // isStopped = true;
-//     if (timer) {
-//         clearInterval(timer);
-//     }
-//     if (waitTimer) {
-//         clearTimeout(waitTimer);
-//     }
-// });
+    if (timer) {
+        clearInterval(timer);
+    }
+    if (waitTimer) {
+        clearTimeout(waitTimer);
+    }
+
+    startButton.style.display = 'block';
+    startButton.textContent = `Resume`;
+    pauseButton.style.display = 'none';
+});
+
+
+endButton.addEventListener('click', () =>{
+   
+    if (timer) {
+        clearInterval(timer);
+    }
+    if (waitTimer) {
+        clearTimeout(waitTimer);
+    }
+
+    window.location.href = `../routine-detail/?id=${routineId}`;
+    
+});
 
 
 function intervalAndTimeout(durationsArray, namesArray){
@@ -85,14 +115,14 @@ function intervalAndTimeout(durationsArray, namesArray){
         timerEl.textContent = `00:${ durationsArray[i] }`;
     }
 
-    //display initial name
+    //display initial exercise name
     currentExerciseEl.textContent = namesArray[i];
 
     //render unique stop button
     const tempStopButton = document.createElement('button');
     tempStopButton.classList.add('start-stop-button');
-    tempStopButton.textContent = `Stop ${namesArray[i]}`;
-    buttonContainer.append(tempStopButton);
+    tempStopButton.textContent = `Pause ${namesArray[i]}`;
+    // buttonContainer.append(tempStopButton);
 
     tempStopButton.addEventListener('click', ()=> {
         if (timer) {
@@ -101,6 +131,10 @@ function intervalAndTimeout(durationsArray, namesArray){
         if (waitTimer) {
             clearTimeout(waitTimer);
         }
+
+        startButton.style.display = 'block';
+        startButton.textContent = `Resume ${namesArray[i]}`;
+        tempStopButton.style.display = 'none';
     });
 
 
@@ -129,10 +163,9 @@ function decrementAndDisplayTime(durationsArray, i){
         else if (durationsArray[i] >= 10){
             timerEl.textContent = `00:${ durationsArray[i] }`;
         }
+        console.log(durationsArray);
     }
-    
-    // else if (durationsArray[i] <= 0) {
-    //     clearInterval(timer);
-    // }
-    console.log(durationsArray[i]);
+    else if (durationsArray[i] <= 0) {
+        clearInterval(timer);
+    }
 }
