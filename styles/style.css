@@ -111,8 +111,6 @@ footer {
 
   }
 
-#logout {
-}
 
 .auth-main {
     display: flex;
@@ -141,6 +139,11 @@ button {
     padding: 4px;
     margin: 5px auto;
     border: 1px solid black;
+}
+
+#logout {
+    background-color: #3A86FF;
+    border: none;
 }
 
 .routine-submit {
@@ -263,8 +266,6 @@ button {
     font-size: 10px;
     color: black
 }
-
-
 
 .title {
     font-size: 10px;
