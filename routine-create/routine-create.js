@@ -41,7 +41,6 @@ formEL.addEventListener('submit', async(e) => {
     const name = data.get('routine-name');
     const userRoutineObj = await createRoutineName(name);
     routineID = userRoutineObj.id;
-    console.log(userRoutineObj);
 
     routineNameEL.textContent = userRoutineObj.name;
 
@@ -53,7 +52,6 @@ formEL.addEventListener('submit', async(e) => {
 
     nameInputEL.disabled = true;
     nameButtonEL.disabled = true;
-
 
 });
 
@@ -84,13 +82,10 @@ async function fetchAndDisplayExercises(routineID) {
     }
 }
 
-
 // add event listener for this routine detail page
 redirectRoutineBtnEL.addEventListener('click', ()=> {
     window.location.href = `../routine-detail/?id=${routineID}`;
 });
-
-
 
 
 logoutButton.addEventListener('click', () => {
