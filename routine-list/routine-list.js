@@ -5,6 +5,7 @@ checkAuth();
 
 const routineListEl = document.querySelector('.display-routine-list');
 const createRoutineBtnEl = document.querySelector('.create-routine-btn');
+const editRoutineBtnEl = document.querySelector('.edit-routine-btn');
 const logoutButton = document.getElementById('logout');
 
 logoutButton.addEventListener('click', () => {
@@ -21,5 +22,9 @@ window.addEventListener('load', async() => {
 
 createRoutineBtnEl.addEventListener('click', () => {
     window.location.href = '../routine-create';
+});
+
+editRoutineBtnEl.addEventListener('click', () => {
+    window.location.href = '../routine-edit';
 });
 

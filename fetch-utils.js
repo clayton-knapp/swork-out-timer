@@ -41,6 +41,15 @@ export async function getOneRoutineAndExercises(routineID) {
     return checkError(response);
 }
 
+export async function updateRoutineName(name, id) {
+    const response = await client
+        .from('routines')
+        .update({ name: name })
+        .match({ id: id });
+
+    return checkError(response);
+}
+
 
 export async function createRoutineName(routineName) {
     const response = await client

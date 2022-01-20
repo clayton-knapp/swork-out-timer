@@ -13,13 +13,16 @@ const logoutButton = document.getElementById('logout');
 logoutButton.addEventListener('click', () => {
     logout();
 });
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
 let arr = [];
+
 window.addEventListener('load', async() => {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
+    // const params = new URLSearchParams(window.location.search);
+    // const id = params.get('id');
     const getRoutine = await getOneRoutineAndExercises(id);
-    console.log("🚀 ~ file: routine-detail.js ~ line 20 ~ window.addEventListener ~ getRoutine", getRoutine)
-    console.log(getRoutine[0].routines);
+
     const routineName = getRoutine[0].routines.name;
     routineNameEl.textContent = `${routineName}`;
 
@@ -46,14 +49,9 @@ window.addEventListener('load', async() => {
 
 
 startWorkoutBtnEl.addEventListener('click', () => {
-    window.location.href = '../timer';
+    window.location.href = `../timer/?id=${id}`;
+
 });
-
-
-
-
-
-
 
 
 
@@ -68,12 +66,3 @@ function convertHMS(value) {
     if (seconds < 10) {seconds = '0' + seconds;}
     return minutes + ':' + seconds; // Return is HH : MM : SS
 }
-
-// async function routines() {
-
-//     const routines = await getRoutines();
-//     console.log('🚀 ~ file: other-page.js ~ line 14 ~ routines', routines);
-// }
-
-// routines();
-

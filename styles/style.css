@@ -147,6 +147,7 @@ button {
 .add-exercise-btn,
 .redirect-routine-btn,
 .create-routine-btn,
+.edit-routine-btn,
 .start-workout {
     background-color: white;
     outline: none;
@@ -154,9 +155,16 @@ button {
 
 
 .create-routine-btn,
-.start-workout {
+.start-workout
+{
     position: fixed;
     bottom: 50px;
+}
+
+.edit-routine-btn {
+    position: fixed;
+    bottom: 50px;
+    left: 55%;
 }
 
 .start-workout {
@@ -202,12 +210,17 @@ button {
     text-align: center;
 }
 
-.middleDiv {
-    display: flex;
+.about-us, 
+.our-story {
+    border: solid 2px black;
+    height: 70px;
+    width: 200px;
+    margin: 20px;
 }
 
-.middle {
-    color: blue;
-    text-align: center;
-    justify-content: center;
+img {
+    border: solid 2px black;
+    height: 50px;
+    width: 50px;
+    margin: 10px;
 }
