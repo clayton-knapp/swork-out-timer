@@ -1,4 +1,4 @@
-import { checkAuth, logout, getAllRoutines, updateRoutineName, getOneRoutineAndExercises, getAllRoutinesByUserID } from '../fetch-utils.js';
+import { checkAuth, logout, getAllRoutines, updateRoutineName, getOneRoutineAndExercises, getAllRoutinesByUserID, deleteOneRoutineAndExercises, deleteOneRoutine } from '../fetch-utils.js';
 import { renderExercises, renderRoutinesInEdit } from '../render-utils.js';
 // import { renderRoutines } from '../render-utils.js';
 
@@ -9,12 +9,29 @@ const exerciseListEl = document.querySelector('.exercises-list-Delete');
 const formEl = document.querySelector('form');
 // const createRoutineBtnEl = document.querySelector('.create-routine-btn');
 const logoutButton = document.getElementById('logout');
+const deleteButton = document.getElementById('delete-routine');
+
+
+
+let id = 0;
+
+
 
 logoutButton.addEventListener('click', () => {
     logout();
 });
 
-let id = 0;
+deleteButton.addEventListener('click', async() => {
+    id = routineListEl.value;
+    console.log("🚀 ~ file: routine-edit.js ~ line 26 ~ deleteButton.addEventListener ~ id", id)
+
+    const deletion = await deleteOneRoutineAndExercises(id);
+    console.log("🚀 ~ file: routine-edit.js ~ line 28 ~ deleteButton.addEventListener ~ deletion", deletion)
+    await deleteOneRoutine(id)
+
+    // {"message":"update or delete on table \"routines\" violates foreign key constraint \"junctions_routine_id_fkey\" on table \"junctions\"","code":"23503","details":"Key is still referenced from table \"junctions\".","hint":null}
+});
+
 
 routineListEl.addEventListener('change', async() => {
   exerciseListEl.textContent = '';
@@ -48,9 +65,9 @@ window.addEventListener('load', async(e) => {
   //   const exercises = await getOneRoutineAndExercises(id)
   // }
   
-  id = routineListEl.value
+  id = routineListEl.value;
   const exercises = await getOneRoutineAndExercises(id);
-  console.log("🚀 ~ file: routine-edit.js ~ line 22 ~ routineListEl.addEventListener ~ exercises", exercises)
+  // console.log("🚀 ~ file: routine-edit.js ~ line 22 ~ routineListEl.addEventListener ~ exercises", exercises)
 
 
   renderExerciseOptions(exercises)
@@ -77,13 +94,13 @@ formEl.addEventListener('submit', async(e) => {
 
   await updateRoutineName(name, id);
   routineListEl.textContent = '';
-  renderRoutinesInEdit(routineListEl);
+  await renderRoutinesInEdit(routineListEl);
 
 });
 
 
 async function renderExerciseOptions(exercises) {
-  console.log("🚀 ~ file: routine-edit.js ~ line 84 ~ renderExerciseOptions ~ exercises", exercises)
+
   for (const exercise of exercises[0].routines.exercises) {
     const wrapper = document.createElement('div');
     const deleteIcon = document.createElement('img');

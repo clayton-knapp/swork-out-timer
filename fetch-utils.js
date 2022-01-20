@@ -61,6 +61,27 @@ export async function updateRoutineName(name, id) {
     return checkError(response);
 }
 
+export async function deleteOneRoutineAndExercises(id) {
+    const response = await client
+        .from('junctions')
+        .delete()
+        .match({ routine_id: id });
+        
+        // .select()
+        return checkError(response);
+}
+
+export async function deleteOneRoutine(id) {
+    const response = await client
+        .from('routines')
+        .delete()
+        .match({ id: id });
+        
+        // .select()
+        return checkError(response);
+}
+
+
 
 export async function createRoutineName(routineName) {
     const response = await client
