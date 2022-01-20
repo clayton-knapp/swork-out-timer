@@ -5,25 +5,22 @@ import {
     signupUser,
 } from './fetch-utils.js';
 
-const signInForm = document.getElementById('sign-in');
-const signInEmail = document.getElementById('sign-in-email');
-const signInPassword = document.getElementById('sign-in-password');
-
 const signInFB = document.getElementById('fb-btn');
 
 // const signInForm = document.getElementById('sign-in-fb');
 // const signInEmail = document.getElementById('sign-in-email-fb');
 // const signInPassword = document.getElementById('sign-in-password-fb');
 
-const signUpForm = document.getElementById('sign-up');
+const signInButton = document.getElementById('sign-in-button');
+const signUpButton = document.getElementById('sign-up-button');
 const signUpEmail = document.getElementById('sign-up-email');
 const signUpPassword = document.getElementById('sign-up-password');
 
 // if user currently logged in, redirect
 redirectIfLoggedIn();
 
-signUpForm.addEventListener('submit', async(event)=>{
-    event.preventDefault();
+signUpButton.addEventListener('click', async(e)=>{
+    e.preventDefault();
     const user = await signupUser(signUpEmail.value, signUpPassword.value);
 
     if (user){
@@ -33,9 +30,9 @@ signUpForm.addEventListener('submit', async(event)=>{
     }
 });
 
-signInForm.addEventListener('submit', async(event)=>{
-    event.preventDefault();
-    const user = await signInUser(signInEmail.value, signInPassword.value);
+signInButton.addEventListener('click', async(e)=>{
+    e.preventDefault();
+    const user = await signInUser(signUpEmail.value, signUpPassword.value);
   
     if (user){
         redirectIfLoggedIn();
