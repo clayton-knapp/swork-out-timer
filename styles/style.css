@@ -120,6 +120,7 @@ footer {
 
 .auth-container {
     margin: 10px;
+  
 }
 
 .auth-container form {
@@ -341,25 +342,33 @@ font-size: 25px;
     font-size:18px;
   
 }
+
 #routine-list{
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    color:white;
+ 
+   
 }
 .routine-select-display{
-    background-color: white;
+    background-color:#ffbe0b;
+    color:white;
     border:solid 1px;
-    border-color:black;
+    border-color:#ff006e;
     margin:5px;
     height:30px;
     width: 100%;
     border-radius: 30px;
     justify-content: center;
     box-shadow: var(--shadow);
+    
+    
 }
 
 .create-routine-btn, .edit-routine-btn{
+   display:block;
    margin:50px;
    height:100px;
    width:100px;
@@ -370,9 +379,18 @@ font-size: 25px;
    color:white;
    font-family: 'Karla', 'sans-serif';
    font-size:12px;
-    box-shadow: var(--shadow);
-
+   box-shadow: var(--shadow);
+   
+   
   
-
-
+}
+.navbar{
+    position:sticky;
+    margin-bottom:20px;
+    
+}
+.button-container{
+    
+    margin-top:50px;
+   
 }
