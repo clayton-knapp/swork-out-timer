@@ -24,6 +24,17 @@ export async function getAllRoutines() {
     return checkError(response);
 }
 
+export async function getAllRoutinesByUserID() {
+    const currentUserId = client.auth.user().id;
+    const response = await client
+        .from('routines')
+        .select()
+        .match({ user_id: currentUserId });
+
+    return checkError(response);
+}
+
+
 export async function getAllExercise() {
     const response = await client
         .from('exercises')

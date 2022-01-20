@@ -19,6 +19,8 @@ window.addEventListener('load', async() => {
   // const routines = await getAllRoutines();
   renderRoutinesInEdit(routineListEl);
 
+  
+
 });
 
 formEl.addEventListener('submit', async(e) => {
@@ -30,7 +32,7 @@ formEl.addEventListener('submit', async(e) => {
 
   await updateRoutineName(name, id);
   routineListEl.textContent = '';
-  renderRoutinesInEdit(routineListEl)
+  renderRoutinesInEdit(routineListEl);
 
 });
 
