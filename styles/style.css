@@ -51,7 +51,7 @@ header {
     justify-content: center;
     background-color: var(--color3);
     height: var(--header-height);
-    box-shadow: var(--shadow);
+    /* box-shadow: var(--shadow); */
 }
 
 h1 {
@@ -292,7 +292,7 @@ button {
     padding: none;
     background-color: #FFBE0B ;
     font-family: 'Karla', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     color: black
 }
 
@@ -302,4 +302,42 @@ button {
 
 .name {
     margin-top: 10px;
+}
+.auth-main{
+    display:flex;
+    flex-direction: column;
+   
+    
+}
+#sign-up{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#sign-up-email, #sign-up-password{
+    margin:5px;
+    height:45px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Karla', 'sans-serif';
+    background-color: #ffbe0b;
+
+}
+#sign-up-email::placeholder, #sign-up-password::placeholder {color: black;
+
+font-size: 25px;
+}
+
+.log-in{
+    background-color: #ff006e;
+    margin:5px;
+    height: 45px;
+    width: 200px;
+    border-radius: 10px;
+    justify-items: center;
+    color:white;
+    font-size:18px;
+  
 }
