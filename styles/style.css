@@ -529,4 +529,18 @@ font-size: 25px;
     flex-direction: column;
     justify-content: center;
 }
+#about, #user-story{
+    box-shadow: var(--shadow);
+    color:white;
+}
+#user-story-headline, #our-team, #meet-the-team-headline, .about-us{
+    box-shadow: var(--shadow);
 
+}
+#meet-the-team-headline{
+    text-align: center;
+    color:white;
+}
+#user-story-headline{
+    color:white;
+}
