@@ -496,7 +496,7 @@ font-size: 25px;
     box-shadow: var(--shadow);
 }
 
-.add-exercise-btn{
+.add-exercise-btn, #change-button, #delete-routine{
     margin:20px;
     height:30px;
     width: 150px;
