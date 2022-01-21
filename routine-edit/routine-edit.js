@@ -80,18 +80,38 @@ window.addEventListener('load', async() => {
 
 });
 
+
 formEl.addEventListener('submit', async(e) => {
     e.preventDefault();
     const data = new FormData(formEl);
     const name = data.get('newName');
-
+    
     id = routineListEl.value;
-
+    
     await updateRoutineName(name, id);
     routineListEl.textContent = '';
     await renderRoutinesInEdit(routineListEl);
+    let newId = routineListEl.value;
+    const exercises = await getOneRoutineAndExercises(newId);
+    renderExerciseOptions(exercises);
+    formEl.reset();
 
 });
+
+
+
+// formEl.addEventListener('submit', async(e) => {
+//     e.preventDefault();
+//     const data = new FormData(formEl);
+//     const name = data.get('newName');
+
+//     id = routineListEl.value;
+
+//     await updateRoutineName(name, id);
+//     routineListEl.textContent = '';
+//     await renderRoutinesInEdit(routineListEl);
+
+// });
 
 
 function renderExerciseOptions(exercises) {

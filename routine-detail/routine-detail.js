@@ -48,7 +48,7 @@ window.addEventListener('load', async() => {
             const videoDiv = document.createElement('iframe');
             videoDiv.classList.add('exercise-video') ;
             videoDiv.src = exerciseVideo.video_link;
-            videoDiv.title = "YouTube video player";
+            videoDiv.title = 'YouTube video player';
             videoDisplayEl.append(videoDiv);
         });
     }
