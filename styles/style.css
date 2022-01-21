@@ -314,6 +314,7 @@ button {
     display:flex;
     flex-direction: column;
     justify-content: center;
+   
 }
 #sign-up-email, #sign-up-password{
     margin:5px;
@@ -324,6 +325,7 @@ button {
     justify-content: center;
     font-family: 'Karla', 'sans-serif';
     background-color: #ffbe0b;
+    box-shadow: var(--shadow);
 
 }
 #sign-up-email::placeholder, #sign-up-password::placeholder {color: black;
@@ -340,6 +342,7 @@ font-size: 25px;
     justify-items: center;
     color:white;
     font-size:18px;
+    box-shadow: var(--shadow);
   
 }
 
@@ -533,7 +536,7 @@ font-size: 25px;
     box-shadow: var(--shadow);
     color:white;
 }
-#user-story-headline, #our-team, #meet-the-team-headline, .about-us{
+#user-story-headline, #our-team, #meet-the-team-headline, .about-us, #edit-routine-h1, #list-of-routines-h1, #create-routine-h1{
     box-shadow: var(--shadow);
 
 }
@@ -543,4 +546,7 @@ font-size: 25px;
 }
 #user-story-headline{
     color:white;
+}
+.exercise-list, .exercise{
+    box-shadow: var(--shadow);
 }
