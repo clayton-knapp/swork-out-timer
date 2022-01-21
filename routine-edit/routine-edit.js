@@ -22,12 +22,26 @@ logoutButton.addEventListener('click', () => {
 });
 
 deleteButton.addEventListener('click', async() => {
-    id = routineListEl.value;
-    console.log("🚀 ~ file: routine-edit.js ~ line 26 ~ deleteButton.addEventListener ~ id", id)
+  
+  id = routineListEl.value;
+  const exercises = await getOneRoutineAndExercises(id);
 
-    const deletion = await deleteOneRoutineAndExercises(id);
-    console.log("🚀 ~ file: routine-edit.js ~ line 28 ~ deleteButton.addEventListener ~ deletion", deletion)
-    await deleteOneRoutine(id)
+
+  if (confirm(`Are you sure you want to delete Routine: ${exercises[0].routines.name}`)) {
+    await deleteOneRoutineAndExercises(id);
+    await deleteOneRoutine(id);
+    routineListEl.textContent = '';
+    await renderRoutinesInEdit(routineListEl);
+    let newId = routineListEl.value;
+    const newExercises = await getOneRoutineAndExercises(newId);
+
+    renderExerciseOptions(newExercises);
+  }
+  
+  // routineListEl.textContent = '';
+  // await renderRoutinesInEdit(routineListEl);
+  // renderExerciseOptions(exercises)
+
 
     // {"message":"update or delete on table \"routines\" violates foreign key constraint \"junctions_routine_id_fkey\" on table \"junctions\"","code":"23503","details":"Key is still referenced from table \"junctions\".","hint":null}
 });
@@ -35,9 +49,8 @@ deleteButton.addEventListener('click', async() => {
 
 routineListEl.addEventListener('change', async() => {
   exerciseListEl.textContent = '';
+  id = routineListEl.value;
   const exercises = await getOneRoutineAndExercises(id);
-  console.log("🚀 ~ file: routine-edit.js ~ line 22 ~ routineListEl.addEventListener ~ exercises", exercises)
-      id = routineListEl.value
 
   // if (id) {
   //   id = routineListEl.value;
@@ -51,36 +64,19 @@ routineListEl.addEventListener('change', async() => {
 
 
 
-window.addEventListener('load', async(e) => {
-  // const routines = await getAllRoutines();
-  // const routines = await getAllRoutinesByUserID([0].id);
-  // console.log("🚀 ~ file: routine-edit.js ~ line 22 ~ window.addEventListener ~ routines", routines)
+window.addEventListener('load', async() => {
 
  await renderRoutinesInEdit(routineListEl);
 
   // const exercises = await getOneRoutineAndExercises(59);
-
-  // if (id === 0) {
-  //   id = routineListEl.value
-  //   const exercises = await getOneRoutineAndExercises(id)
-  // }
   
   id = routineListEl.value;
   const exercises = await getOneRoutineAndExercises(id);
+  console.log("🚀 ~ file: routine-edit.js ~ line 82 ~ window.addEventListener ~ exercises", exercises[0].routines.name)
   // console.log("🚀 ~ file: routine-edit.js ~ line 22 ~ routineListEl.addEventListener ~ exercises", exercises)
 
 
   renderExerciseOptions(exercises)
-  
-
-
-  // if (exercises) {
-  //   console.log('hi');
-  // } else {
-  //   console.log('bye');
-  // }
-  //   console.log("🚀 ~ file: routine-edit.js ~ line 25 ~ window.addEventListener ~ exercises", exercises)
-
 
 
 });
@@ -99,12 +95,12 @@ formEl.addEventListener('submit', async(e) => {
 });
 
 
-async function renderExerciseOptions(exercises) {
-
+function renderExerciseOptions(exercises) {
+  exerciseListEl.textContent = '';
   for (const exercise of exercises[0].routines.exercises) {
     const wrapper = document.createElement('div');
     const deleteIcon = document.createElement('img');
-    deleteIcon.src = '../assets/bin.png';
+    // deleteIcon.src = '../assets/bin.png';
     wrapper.classList.add('wrapper');
     deleteIcon.classList.add('delete');
     const exerciseWorkout = renderExercises(exercise);
