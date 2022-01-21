@@ -30,6 +30,7 @@ let restTimeout = '';
 let restTimer = '';
 
 let restTime = 3;
+// let isRest = false;
 
 
 logoutButton.addEventListener('click', () => {
@@ -80,17 +81,31 @@ startButton.addEventListener('click', async()=>{
 
     // show the pause button
     pauseButton.style.display = 'block';
+
+    //disable dropdown
+    restDropdown.disabled = 'true';
 });
 
 pauseButton.addEventListener('click', () =>{
    
     if (exerciseTimer) {
+        console.log('THERE IS AN EXERCISE TIMER');
         clearInterval(exerciseTimer);
     }
     if (waitTimer) {
+        console.log('THERE IS AN EXERCISE TIMEOUT');
         clearTimeout(waitTimer);
     }
 
+    if (restTimer) {
+        console.log('THERE IS AN EXERCISE TIMER');
+        clearInterval(restTimer);
+    }
+    if (restTimeout) {
+        console.log('THERE IS AN EXERCISE TIMEOUT');
+        clearTimeout(restTimeout);
+    }
+    
     startButton.style.display = 'block';
     startButton.textContent = `Resume`;
     pauseButton.style.display = 'none';
@@ -135,6 +150,7 @@ function intervalAndTimeout(durationsArray, namesArray){
     // sets timeout for current duration, then increments[i], then reruns function recursively
     waitTimer = setTimeout(()=>{
 
+        // checks if we are at the end of the array, and if we are doesnt run
         if (i !== (justDurations.length - 1)) {
         // display initial rest
             if (restTime < 10) {
@@ -147,14 +163,13 @@ function intervalAndTimeout(durationsArray, namesArray){
         // displays Rest
             currentExerciseEl.textContent = 'Rest';
 
+        // raises flag for Rest
+
 
         // run rest timer
-        // let tempRestTime = restTime;
             restTimer = setInterval(decrementAndDisplayRest, 1000);
 
             // sets rest Timeout then executes next exercise timer
-            // clearTimeout(restTimeout);
-
             restTimeout = setTimeout(()=> {
     
                 i++;
@@ -162,10 +177,12 @@ function intervalAndTimeout(durationsArray, namesArray){
                 intervalAndTimeout(durationsArray, namesArray, i);
             }, restTime * 1000 + 1000);
         } 
+        //if we are at the end of the array, complete the workout
         else if (i === (justDurations.length - 1)) {
             console.log('workout complete');
             currentExerciseEl.textContent = 'WORKOUT COMPLETE!';
             timerEl.textContent = `NICE!`;
+            pauseButton.style.display = 'none';
         }
         
 
@@ -198,7 +215,6 @@ function decrementAndDisplayTime(durationsArray, i){
 }
 
 function decrementAndDisplayRest() {
-    // let tempRestTime = restTime;
     if (restTime > 0){
         restTime--;
 
@@ -220,7 +236,5 @@ function decrementAndDisplayRest() {
         clearInterval(restTimer);
         restTime = restDropdown.value;
     }
-    // if (i === (justDurations.length - 1)) {
-    //     clearTimeout(restTimeout);
-    // }
+
 }
