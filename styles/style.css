@@ -229,7 +229,9 @@ button {
     margin: 20px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     background-color: #FFBE0B;
+
 }
 
 .our-story {
@@ -367,7 +369,7 @@ font-size: 25px;
     color:white;
     height:220px;
     overflow-y: scroll;
-    overflow-x:none;
+    overflow-x: none;
 
  
    
@@ -385,6 +387,11 @@ font-size: 25px;
     box-shadow: var(--shadow);
     
     
+}
+
+.routine-select-display a {
+    text-decoration: none;
+
 }
 
 .create-routine-btn, .edit-routine-btn{
@@ -443,12 +450,12 @@ font-size: 25px;
 }
 
 .exercise-video {
-    height: 180px;
+    height: 150px;
     width: 250px;
 }
 
 .video-display {
-    height: 200px;
+    height: 180px;
     width: 250px;
 
     margin-bottom:10px;
@@ -564,11 +571,16 @@ font-size: 25px;
     text-align: center;
     justify-content: center;
     font-family: 'Karla', 'sans-serif';
-   border:solid 2px;
+    border:solid 2px;
     background-color: #ffbe0b;
     border-color:  #ff006e;
     box-shadow: var(--shadow);
 }
+
+#edit-name-input {
+    width: 200px;
+}
+
 .display-routine-selection{
     display:flex;
     flex-direction: column;
@@ -613,4 +625,10 @@ flex-direction: column;
 justify-content: center;
 align-items:center;
 text-align: center;
+}
+
+#edit-form {
+    display: flex;
+    flex-direction: column;
+
 }
