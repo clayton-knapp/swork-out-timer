@@ -14,7 +14,7 @@ body {
     --color5: hsla(224, 40%, 79%, 1); */
     
     --header-height: 80px;
-    --shadow: 0px 10px 20px -12px rgba(0,0,0,0.45);
+    /* --shadow: 0px 10px 20px -12px rgba(0,0,0,0.45); */
     --gutter: 30px;
     --footer-height: 50px;
     
@@ -51,6 +51,7 @@ header {
     justify-content: center;
     background-color: var(--color3);
     height: var(--header-height);
+
     /* box-shadow: var(--shadow); */
 }
 
@@ -82,8 +83,9 @@ p {
 footer {
     position: absolute;
     width: 100%;
-    bottom: 0;
-    margin-bottom: 20px;
+    bottom: 0px;
+    margin-bottom: 10px;
+    
     height: var(--footer-height);
     display: flex;
     justify-content: center;
@@ -274,7 +276,7 @@ button {
 
 .our-team {
     overflow: scroll;
-    height: 300px;
+    height: 220px;
 }
 
 .name-img-title {
@@ -363,6 +365,10 @@ font-size: 25px;
     justify-content: center;
     text-align: center;
     color:white;
+    height:220px;
+    overflow-y: scroll;
+    overflow-x:none;
+
  
    
 }
@@ -422,7 +428,12 @@ font-size: 25px;
     box-shadow: var(--shadow);
 }
 .navbar{
+    margin-top:10px;
+    display: flex;
+    flex-direction: row;
+    width: 150px;
     position:fixed;
+
   
 
 }
@@ -510,6 +521,10 @@ font-size: 25px;
     color:white;
     box-shadow: var(--shadow);
 }
+#delete-routine{
+    display:block;
+    margin:5px;
+}
 #name-input{
     margin:5px;
     height:45px;
@@ -576,4 +591,26 @@ font-size: 25px;
 }
 .exercise-list, .exercise{
     box-shadow: var(--shadow);
+}
+#routine-name{
+    width: fixed;
+}
+.wrapper{
+    display: flex;
+
+    margin:5px;
+}
+.exercises-list-Delete{
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items:center;
+
+}
+#edit-routines-center{
+    display:flex;
+flex-direction: column;
+justify-content: center;
+align-items:center;
+text-align: center;
 }
