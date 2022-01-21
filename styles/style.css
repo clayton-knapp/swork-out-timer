@@ -343,6 +343,17 @@ font-size: 25px;
     justify-items: center;
     color:white;
     font-size:18px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+.delete {
+    width: 15px;
+    margin-left: 10px;
     box-shadow: var(--shadow);
 }
 
@@ -565,5 +576,4 @@ font-size: 25px;
 }
 .exercise-list, .exercise{
     box-shadow: var(--shadow);
-
 }

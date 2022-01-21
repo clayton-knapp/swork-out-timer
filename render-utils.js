@@ -30,10 +30,10 @@ export function renderExercises(exercise) {
 export async function renderRoutinesInEdit(el) {
     const routines = await getAllRoutinesByUserID();
     for (let routine of routines) {
-      const optionEL = document.createElement('option');
+        const optionEL = document.createElement('option');
 
-      optionEL.textContent = `${routine.name}`;
-      optionEL.value = routine.id;
-      el.append(optionEL);
-  }
+        optionEL.textContent = `${routine.name}`;
+        optionEL.value = routine.id;
+        el.append(optionEL);
+    }
 }

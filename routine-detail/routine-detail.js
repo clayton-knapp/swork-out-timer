@@ -33,7 +33,7 @@ window.addEventListener('load', async() => {
             return a + b;
         });
         
-        durationEl.textContent = `Duration: ${convertHMS(sum)} min`;
+        durationEl.textContent = `Duration: ${convertTimeToMinAndSeconds(sum)} min`;
     }
     
     for (const exercise of getRoutine[0].routines.exercises) {
@@ -54,7 +54,8 @@ window.addEventListener('load', async() => {
     }
 });
 
-function convertHMS(value) {
+
+function convertTimeToMinAndSeconds(value) {
     const sec = parseInt(value, 10); // convert value to number if it's string
     // let hours   = Math.floor(sec / 3600); // get hours
     let minutes = Math.floor((sec) / 60); // get minutes
