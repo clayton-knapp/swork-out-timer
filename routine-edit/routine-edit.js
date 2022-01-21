@@ -94,7 +94,7 @@ formEl.addEventListener('submit', async(e) => {
     let newId = routineListEl.value;
     const exercises = await getOneRoutineAndExercises(newId);
     renderExerciseOptions(exercises);
-    formEl.reset()
+    formEl.reset();
 
 });
 
