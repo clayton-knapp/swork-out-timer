@@ -11,6 +11,7 @@ const pauseButton = document.querySelector('#pause-button');
 const endButton = document.querySelector('#end-button');
 const buttonContainer = document.querySelector('#button-container');
 const audioPlayer = document.querySelector('#audio-player');
+const restDropdown = document.querySelector('#rest-dropdown');
 
 const params = new URLSearchParams(window.location.search);
 const routineId = params.get('id');
@@ -22,16 +23,24 @@ let justNames = [];
 
 let i = 0;
 
-let timer = '';
+let exerciseTimer = '';
 let waitTimer = '';
+let restTimeout = '';
+let restTimer = '';
+
+let restTime = 3;
 
 
 logoutButton.addEventListener('click', () => {
     logout();
 });
 
+restDropdown.addEventListener('change', ()=>{
+    restTime = restDropdown.value;
+});
+
 window.addEventListener('load', async() =>{
-    //fetch routins and exercises joined from supabase
+    //fetch routines and exercises joined from supabase
     routines = await getOneRoutineAndExercises(routineId);
 
     //make new array for the nested exercises
@@ -68,16 +77,14 @@ startButton.addEventListener('click', async()=>{
     //when clicking start hide the button (pause button generated)
     startButton.style.display = 'none';
 
-
-    pauseButton.textContent = `Pause`;
     // show the pause button
     pauseButton.style.display = 'block';
 });
 
 pauseButton.addEventListener('click', () =>{
    
-    if (timer) {
-        clearInterval(timer);
+    if (exerciseTimer) {
+        clearInterval(exerciseTimer);
     }
     if (waitTimer) {
         clearTimeout(waitTimer);
@@ -91,8 +98,8 @@ pauseButton.addEventListener('click', () =>{
 
 endButton.addEventListener('click', () =>{
    
-    if (timer) {
-        clearInterval(timer);
+    if (exerciseTimer) {
+        clearInterval(exerciseTimer);
     }
     if (waitTimer) {
         clearTimeout(waitTimer);
@@ -115,39 +122,72 @@ function intervalAndTimeout(durationsArray, namesArray){
         timerEl.textContent = `00:${ durationsArray[i] }`;
     }
 
-    //display initial exercise name
+    //display exercise name
     currentExerciseEl.textContent = namesArray[i];
 
     //render unique stop button
-    const tempStopButton = document.createElement('button');
-    tempStopButton.classList.add('start-stop-button');
-    tempStopButton.textContent = `Pause ${namesArray[i]}`;
+    // const tempStopButton = document.createElement('button');
+    // tempStopButton.classList.add('start-stop-button');
+    // tempStopButton.textContent = `Pause ${namesArray[i]}`;
     // buttonContainer.append(tempStopButton);
 
-    tempStopButton.addEventListener('click', ()=> {
-        if (timer) {
-            clearInterval(timer);
-        }
-        if (waitTimer) {
-            clearTimeout(waitTimer);
-        }
+    // tempStopButton.addEventListener('click', ()=> {
+    //     if (timer) {
+    //         clearInterval(timer);
+    //     }
+    //     if (waitTimer) {
+    //         clearTimeout(waitTimer);
+    //     }
 
-        startButton.style.display = 'block';
-        startButton.textContent = `Resume ${namesArray[i]}`;
-        tempStopButton.style.display = 'none';
-    });
+    //     startButton.style.display = 'block';
+    //     startButton.textContent = `Resume ${namesArray[i]}`;
+    //     tempStopButton.style.display = 'none';
+    // });
 
 
     // run timer for selected duration
-    timer = setInterval(decrementAndDisplayTime, 1000, durationsArray, i);
+    exerciseTimer = setInterval(decrementAndDisplayTime, 1000, durationsArray, i);
+
     
     console.log('i=', i);
-
+    
     // sets timeout for current duration, then increments[i], then reruns function recursively
     waitTimer = setTimeout(()=>{
-        i++;
-        // console.log(`it's been ${durationsArray[i]} seconds`);
-        intervalAndTimeout(durationsArray, namesArray, i);
+
+        if (i !== (justDurations.length - 1)) {
+        // display initial rest
+            if (restTime < 10) {
+                timerEl.textContent = `00:0${ restTime }`;
+            }
+            else if (restTime >= 10){
+                timerEl.textContent = `00:${ restTime }`;
+            }
+
+        // displays Rest
+            currentExerciseEl.textContent = 'Rest';
+
+
+        // run rest timer
+        // let tempRestTime = restTime;
+            restTimer = setInterval(decrementAndDisplayRest, 1000);
+
+            // sets rest Timeout then executes next exercise timer
+            // clearTimeout(restTimeout);
+
+            restTimeout = setTimeout(()=> {
+    
+                i++;
+                // console.log(`it's been ${durationsArray[i]} seconds`);
+                intervalAndTimeout(durationsArray, namesArray, i);
+            }, restTime * 1000 + 1000);
+        } 
+        else if (i === (justDurations.length - 1)) {
+            console.log('workout complete');
+            currentExerciseEl.textContent = 'WORKOUT COMPLETE!';
+            timerEl.textContent = `NICE!`;
+        }
+        
+
     }, durationsArray[i] * 1000 + 1000);
 }
 
@@ -172,6 +212,34 @@ function decrementAndDisplayTime(durationsArray, i){
 
     else if (durationsArray[i] <= 0) {
         audioPlayer.src = `../assets/short-buzzer.m4a`;
-        clearInterval(timer);
+        clearInterval(exerciseTimer);
     }
+}
+
+function decrementAndDisplayRest() {
+    // let tempRestTime = restTime;
+    if (restTime > 0){
+        restTime--;
+
+        if (restTime < 10) {
+            timerEl.textContent = `00:0${ restTime }`;
+        }
+        else if (restTime >= 10){
+            timerEl.textContent = `00:${ restTime }`;
+        }
+        console.log('rest time:', restTime);
+    }
+
+    if (restTime <= 3 && restTime >= 1) {
+        audioPlayer.src = `../assets/tick.wav`;
+    }
+
+    else if (restTime <= 0) {
+        audioPlayer.src = `../assets/short-buzzer.m4a`;
+        clearInterval(restTimer);
+        restTime = restDropdown.value;
+    }
+    // if (i === (justDurations.length - 1)) {
+    //     clearTimeout(restTimeout);
+    // }
 }
