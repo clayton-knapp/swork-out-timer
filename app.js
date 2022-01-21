@@ -1,11 +1,11 @@
 import { 
     redirectIfLoggedIn, 
     signInUser, 
-    signInUserFB, 
+    // signInUserFB, 
     signupUser,
 } from './fetch-utils.js';
 
-const signInFB = document.getElementById('fb-btn');
+// const signInFB = document.getElementById('fb-btn');
 
 // const signInForm = document.getElementById('sign-in-fb');
 // const signInEmail = document.getElementById('sign-in-email-fb');
@@ -41,15 +41,15 @@ signInButton.addEventListener('click', async(e)=>{
     }
 });
 
-signInFB.addEventListener('click', async(event)=>{
-    event.preventDefault();
-    const user = await signInUserFB();
+// signInFB.addEventListener('click', async(event)=>{
+//     event.preventDefault();
+//     const user = await signInUserFB();
   
-    if (user){
-        redirectIfLoggedIn();
-    } else {
-        console.error(user);
-    }
-});
+//     if (user){
+//         redirectIfLoggedIn();
+//     } else {
+//         console.error(user);
+//     }
+// });
 
 
