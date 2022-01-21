@@ -83,7 +83,7 @@ footer {
     position: absolute;
     width: 100%;
     bottom: 0;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     height: var(--footer-height);
     display: flex;
     justify-content: center;
@@ -343,7 +343,6 @@ font-size: 25px;
     color:white;
     font-size:18px;
     box-shadow: var(--shadow);
-  
 }
 
 #routine-list{
