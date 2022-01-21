@@ -1,4 +1,4 @@
-import { checkAuth, logout, getAllRoutines, updateRoutineName, getOneRoutineAndExercises, getAllRoutinesByUserID, deleteOneRoutineAndExercises, deleteOneRoutine } from '../fetch-utils.js';
+import { checkAuth, logout, updateRoutineName, getOneRoutineAndExercises, deleteOneRoutineAndExercises, deleteOneRoutine } from '../fetch-utils.js';
 import { renderExercises, renderRoutinesInEdit } from '../render-utils.js';
 // import { renderRoutines } from '../render-utils.js';
 
@@ -23,20 +23,20 @@ logoutButton.addEventListener('click', () => {
 
 deleteButton.addEventListener('click', async() => {
   
-  id = routineListEl.value;
-  const exercises = await getOneRoutineAndExercises(id);
+    id = routineListEl.value;
+    const exercises = await getOneRoutineAndExercises(id);
 
 
-  if (confirm(`Are you sure you want to delete Routine: ${exercises[0].routines.name}`)) {
-    await deleteOneRoutineAndExercises(id);
-    await deleteOneRoutine(id);
-    routineListEl.textContent = '';
-    await renderRoutinesInEdit(routineListEl);
-    let newId = routineListEl.value;
-    const newExercises = await getOneRoutineAndExercises(newId);
+    if (confirm(`Are you sure you want to delete Routine: ${exercises[0].routines.name}`)) {
+        await deleteOneRoutineAndExercises(id);
+        await deleteOneRoutine(id);
+        routineListEl.textContent = '';
+        await renderRoutinesInEdit(routineListEl);
+        let newId = routineListEl.value;
+        const newExercises = await getOneRoutineAndExercises(newId);
 
-    renderExerciseOptions(newExercises);
-  }
+        renderExerciseOptions(newExercises);
+    }
   
   // routineListEl.textContent = '';
   // await renderRoutinesInEdit(routineListEl);
@@ -48,9 +48,9 @@ deleteButton.addEventListener('click', async() => {
 
 
 routineListEl.addEventListener('change', async() => {
-  exerciseListEl.textContent = '';
-  id = routineListEl.value;
-  const exercises = await getOneRoutineAndExercises(id);
+    exerciseListEl.textContent = '';
+    id = routineListEl.value;
+    const exercises = await getOneRoutineAndExercises(id);
 
   // if (id) {
   //   id = routineListEl.value;
@@ -59,59 +59,58 @@ routineListEl.addEventListener('change', async() => {
   //   console.log('hi');
   // }
 
-  renderExerciseOptions(exercises)
-})
+    renderExerciseOptions(exercises);
+});
 
 
 
 window.addEventListener('load', async() => {
 
- await renderRoutinesInEdit(routineListEl);
+    await renderRoutinesInEdit(routineListEl);
 
   // const exercises = await getOneRoutineAndExercises(59);
   
-  id = routineListEl.value;
-  const exercises = await getOneRoutineAndExercises(id);
-  console.log("🚀 ~ file: routine-edit.js ~ line 82 ~ window.addEventListener ~ exercises", exercises[0].routines.name)
+    id = routineListEl.value;
+    const exercises = await getOneRoutineAndExercises(id);
   // console.log("🚀 ~ file: routine-edit.js ~ line 22 ~ routineListEl.addEventListener ~ exercises", exercises)
 
 
-  renderExerciseOptions(exercises)
+    renderExerciseOptions(exercises);
 
 
 });
 
 formEl.addEventListener('submit', async(e) => {
-  e.preventDefault();
-  const data = new FormData(formEl);
-  const name = data.get('newName');
+    e.preventDefault();
+    const data = new FormData(formEl);
+    const name = data.get('newName');
 
-  id = routineListEl.value;
+    id = routineListEl.value;
 
-  await updateRoutineName(name, id);
-  routineListEl.textContent = '';
-  await renderRoutinesInEdit(routineListEl);
+    await updateRoutineName(name, id);
+    routineListEl.textContent = '';
+    await renderRoutinesInEdit(routineListEl);
 
 });
 
 
 function renderExerciseOptions(exercises) {
-  exerciseListEl.textContent = '';
-  for (const exercise of exercises[0].routines.exercises) {
-    const wrapper = document.createElement('div');
-    const deleteIcon = document.createElement('img');
+    exerciseListEl.textContent = '';
+    for (const exercise of exercises[0].routines.exercises) {
+        const wrapper = document.createElement('div');
+        const deleteIcon = document.createElement('img');
     // deleteIcon.src = '../assets/bin.png';
-    wrapper.classList.add('wrapper');
-    deleteIcon.classList.add('delete');
-    const exerciseWorkout = renderExercises(exercise);
+        wrapper.classList.add('wrapper');
+        deleteIcon.classList.add('delete');
+        const exerciseWorkout = renderExercises(exercise);
 
-    wrapper.append(exerciseWorkout, deleteIcon);
+        wrapper.append(exerciseWorkout, deleteIcon);
 
 
 
-    exerciseListEl.append(wrapper);
+        exerciseListEl.append(wrapper);
 
-}
+    }
 }
 
 

@@ -68,7 +68,7 @@ export async function deleteOneRoutineAndExercises(id) {
         .match({ routine_id: id });
         
         // .select()
-        return checkError(response);
+    return checkError(response);
 }
 
 export async function deleteOneRoutine(id) {
@@ -78,7 +78,7 @@ export async function deleteOneRoutine(id) {
         .match({ id: id });
         
         // .select()
-        return checkError(response);
+    return checkError(response);
 }
 
 
@@ -139,5 +139,6 @@ export async function logout() {
 }
 
 function checkError({ data, error }) {
+    // eslint-disable-next-line no-console
     return error ? console.error(error) : data;
 }
