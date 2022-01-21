@@ -11,20 +11,24 @@
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/home.css">
     <link rel="icon" href="../assets/Sworkout_3.png" type="image/icon type">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla&family=Pacifico&family=Space+Mono&display=swap');</style>
     <title>Create Routine</title>
 </head>
 
 <body>
     <header>
-      <h1>Create Routine</h1>
+      <div id="animation-div"><img src="../assets/Sworkout.gif" width="100px" height="100px" alt=""></div>
+     
     </header>    
     <main>
+      <h1>Create Routine</h1>
       <form id="routine-form">
         <input id="name-input" type="text" name="routine-name" placeholder="Routine Name Input...">
         <button id="name-button" class="routine-submit">Submit Name</button>
       </form>
 
-      <h2 class="routine-name"></h2> 
+      <h2 class="routine-name" id="routine-name-output"></h2> 
     <select name="exercise-dropdown" id="exercise-dropdown">
         <!-- Add dropdown of exercises from database -->
     </select>

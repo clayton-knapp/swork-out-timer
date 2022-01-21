@@ -384,7 +384,7 @@ font-size: 25px;
 }
 
 
-#start-button, .start-stop-button, .start-workout{
+#start-button, .start-stop-button, .start-workout, .redirect-routine-btn{
     height:100px;
    width:100px;
    border-radius: 50%;
@@ -451,3 +451,65 @@ font-size: 25px;
     margin:10px;
     box-shadow: var(--shadow);
 }
+#name-button{
+    margin:5px;
+    height:30px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Karla', 'sans-serif';
+    border:solid 3px;
+    border-color: #ffbe0b;
+    background-color:  #ff006e;
+    color:white;
+    box-shadow: var(--shadow);
+}
+
+.add-exercise-btn{
+    margin:20px;
+    height:30px;
+    width: 150px;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Karla', 'sans-serif';
+    border:solid 3px;
+    border-color: #ffbe0b;
+    background-color:  #ff006e;
+    color:white;
+    box-shadow: var(--shadow);
+}
+#name-input{
+    margin:5px;
+    height:45px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Karla', 'sans-serif';
+   border:solid 2px;
+    background-color: #ffbe0b;
+    border-color:  #ff006e;
+    box-shadow: var(--shadow);
+   
+}
+#routine-name-output{
+    background-color: #ffbe0b;
+    width:100%;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+#exercise-dropdown{
+    background-color: #ffbe0b;
+    height:50px;
+    text-align:center;
+    font-size: 15px;
+    box-shadow: var(--shadow);
+}
+.exercise{
+    background-color: #ffbe0b;
+    margin:5px;
+}
+
+
