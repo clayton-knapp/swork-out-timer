@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNjQyMjAzODk3LCJleHAiOjE5NTc3Nzk4OTd9.YSE_7a3WfuRs63ZGDXrX4Mq_kg9X2vtRQ4vTvc2c3eA';
 
 const SUPABASE_URL = 'https://vhkagkzgeenenqiijray.supabase.co';
