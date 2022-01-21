@@ -384,7 +384,7 @@ font-size: 25px;
 }
 
 
-#start-button, .start-stop-button{
+#start-button, .start-stop-button, .start-workout{
     height:100px;
    width:100px;
    border-radius: 50%;
@@ -405,6 +405,7 @@ font-size: 25px;
     text-align: center;
     color: black;
     font-family: 'Karla', 'sans-serif';
+    box-shadow: var(--shadow);
 }
 .navbar{
     position:fixed;
@@ -423,4 +424,30 @@ font-size: 25px;
     margin-bottom:20px;
     position:static;
     
+}
+#routine-name-detail, #duration-detail {
+    background-color: #ffbe0b;
+    margin:10px;
+    height:30px;
+    text-align: center;
+    justify-content: space-around;
+    border:solid 2px;
+    border-color: #ff006e;
+    box-shadow: var(--shadow);
+}
+#routine-name-detail{
+    margin-top:20px;
+}
+#exercises-list-detail{
+    background-color: #ffbe0b;
+    margin:10px;
+    border:solid 2px;
+    border-color: #ff006e;
+    box-shadow: var(--shadow);
+    
+}
+.exercise-workout-list{
+    background-color: #ffbe0b;
+    margin:10px;
+    box-shadow: var(--shadow);
 }
