@@ -82,6 +82,17 @@ export async function addExerciseToRoutine(routineID, exerciseID) {
 }
 
 
+export async function getExerciseVideo(exerciseID) {
+    const response = await client
+        .from('exercises')
+        .select()
+        .match({ id: exerciseID })
+        .single();
+    
+    return checkError(response);
+}
+
+
 export async function checkAuth() {
     const user = await getUser();
 

@@ -16,7 +16,7 @@ body {
     --header-height: 80px;
     --shadow: 0px 10px 20px -12px rgba(0,0,0,0.45);
     --gutter: 30px;
-    --footer-height: 25px;
+    --footer-height: 50px;
     
     /* font-family: 'Titillium Web', sans-serif; */
     font-family: 'Karla', sans-serif;
@@ -198,6 +198,7 @@ button {
 
 .exercise-workout-list {
     background-color: rgb(19,201,208);
+    cursor: url('../assets/dumbbell.png'), auto;
 
 }
 
@@ -412,6 +413,22 @@ font-size: 25px;
 .navbar{
     position:fixed;
   
+
+}
+
+.video-link {
+    visibility: hidden;
+}
+
+.exercise-video {
+    height: 180px;
+    width: 250px;
+}
+
+.video-display {
+    height: 200px;
+    width: 250px;
+
     margin-bottom:10px;
     
 }
@@ -548,4 +565,5 @@ font-size: 25px;
 }
 .exercise-list, .exercise{
     box-shadow: var(--shadow);
+
 }
