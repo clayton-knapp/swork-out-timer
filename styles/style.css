@@ -511,5 +511,22 @@ font-size: 25px;
     background-color: #ffbe0b;
     margin:5px;
 }
-
+.display-routine-selection, #edit-name-input, #edit-routine-submit{
+    margin:5px;
+    height:45px;
+    width:50%;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Karla', 'sans-serif';
+   border:solid 2px;
+    background-color: #ffbe0b;
+    border-color:  #ff006e;
+    box-shadow: var(--shadow);
+}
+.display-routine-selection{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
