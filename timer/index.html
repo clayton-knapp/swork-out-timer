@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/home.css">
     <link rel="icon" href="../assets/Sworkout_3.png" type="image/icon type">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla&family=Pacifico&family=Space+Mono&display=swap');</style>
     <title>Exercises</title>
 </head>
 
@@ -19,21 +21,36 @@
       <h1 id="routine-name"></h1>
     </header>    
     <main>
+        <span>Rest Period:</span>
+        <select name="" id="rest-dropdown">
+            <option value="3">3 seconds</option>
+            <option value="10">10 seconds</option>
+            <option value="15">15 seconds</option>
+            <option value="20">20 seconds</option>
+            <option value="30">30 seconds</option>
+
+        </select>
         <h2 id="current-exercise"></h2>
         <div id="icon"></div>
         <h2 id="timer">00:00</h2>
+        <div id="big-container">
         <button class="button start-stop-button" id="start-button">Start Workout</button>
-        <!-- <button class="button start-stop-button" id="stop-button">Stop Workout</button> -->
+        <button class="button start-stop-button" id="pause-button">Pause</button>
+        <button class="button start-stop-button" id="end-button">End Workout</button>
         <div id=button-container></div>
+    </div>
         <div id="finish-workout"></div>
-
+        <audio id="audio-player" autoplay>
+            <source src="" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
 
     </main>
-    <footer>
+    <footer> 
         <div class="navbar">
-            <a href="../routine-list" id="home">Home</a>
-            <button id="logout">Logout</button>
-            <a href="../about" id="user">About</a>
+            <a href="../routine-list" id="home"><img src="../assets/home-icon.png" width="30px" height="30px"></a>
+            <button id="logout"><img src="../assets/logout.png" width="30px" height="30px"></button>
+            <a href="../about" id="user"><img src="../assets/about.png" width="30px" height="30px"></a>
           </div>
     </footer>
     <script type="module" src="./timer.js"></script>

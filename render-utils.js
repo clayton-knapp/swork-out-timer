@@ -15,14 +15,15 @@ export function renderRoutines(routine) {
 export function renderExercises(exercise) {
     const div = document.createElement('div');
     const exerciseLink = document.createElement('a');
-    exerciseLink.href = `#`;
+    const videoDiv = document.createElement('div');
+    // exerciseLink.href = `#`;
     div.classList.add('exercise-workout-list');
     
     exerciseLink.textContent = `${exercise.name} - ${exercise.duration} seconds`;
-
-    div.append(exerciseLink);
+    videoDiv.classList.add('video-link');
+    videoDiv.textContent = 'Show Video';
+    div.append(exerciseLink, videoDiv);
     return div;
-
 }
 
 

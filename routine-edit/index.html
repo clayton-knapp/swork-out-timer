@@ -11,33 +11,36 @@
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/home.css">
     <title>Document</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla&family=Pacifico&family=Space+Mono&display=swap');</style>
 </head>
 
 <body>
     <header>
-      <h1>Edit Routines</h1>
+      <div id="animation-div"><img src="../assets/Sworkout.gif" width="100px" height="100px" alt=""></div>
+     
     </header>    
     <main>
+      <h1 id="edit-routine-h1">Edit Routines</h1>
       <select class="display-routine-selection">
 
-      </select>
+     
       <form>
         <label>
-          Change Name
-          <input name="newName" type="text">
+          <input name="newName" type="text" id="edit-name-input" placeholder="Change Name To...">
         </label>
         <button>Change</button>
       </form>
       <div class="exercises-list-Delete">
-
+      </select>
       </div>
       <button id="delete-routine">Delete Routine</button>
     </main>
     <footer>
       <div class="navbar">
-        <a href="../routine-list" id="home">Home</a>
-        <button id="logout">Logout</button>
-        <a href="../about" id="user">About</a>
+        <a href="../routine-list" id="home"><img src="../assets/home-icon.png" width="30px" height="30px"></a>
+        <button id="logout"><img src="../assets/logout.png" width="30px" height="30px"></button>
+        <a href="../about" id="user"><img src="../assets/about.png" width="30px" height="30px"></a>
       </div>
     </footer>
     <script type="module" src="./routine-edit.js"></script>

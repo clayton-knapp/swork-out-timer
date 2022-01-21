@@ -16,7 +16,7 @@ body {
     --header-height: 80px;
     --shadow: 0px 10px 20px -12px rgba(0,0,0,0.45);
     --gutter: 30px;
-    --footer-height: 25px;
+    --footer-height: 50px;
     
     /* font-family: 'Titillium Web', sans-serif; */
     font-family: 'Karla', sans-serif;
@@ -83,7 +83,7 @@ footer {
     position: absolute;
     width: 100%;
     bottom: 0;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     height: var(--footer-height);
     display: flex;
     justify-content: center;
@@ -120,6 +120,7 @@ footer {
 
 .auth-container {
     margin: 10px;
+  
 }
 
 .auth-container form {
@@ -166,12 +167,12 @@ button {
 .start-workout
 {
     position: fixed;
-    bottom: 50px;
+    bottom: 60px;
 }
 
 .edit-routine-btn {
     position: fixed;
-    bottom: 50px;
+    bottom: 60px;
     left: 55%;
 }
 
@@ -197,6 +198,7 @@ button {
 
 .exercise-workout-list {
     background-color: rgb(19,201,208);
+    cursor: url('../assets/dumbbell.png'), auto;
 
 }
 
@@ -252,8 +254,8 @@ button {
 #icon {
     background-image: url('../assets/workouticon.png');
     background-size: contain;
-    height: 200px;
-    width: 200px
+    height: 100px;
+    width: 100px
 }
 
 #timer {
@@ -313,6 +315,7 @@ button {
     display:flex;
     flex-direction: column;
     justify-content: center;
+   
 }
 #sign-up-email, #sign-up-password{
     margin:5px;
@@ -323,6 +326,7 @@ button {
     justify-content: center;
     font-family: 'Karla', 'sans-serif';
     background-color: #ffbe0b;
+    box-shadow: var(--shadow);
 
 }
 #sign-up-email::placeholder, #sign-up-password::placeholder {color: black;
@@ -350,4 +354,226 @@ font-size: 25px;
 .delete {
     width: 15px;
     margin-left: 10px;
+    box-shadow: var(--shadow);
+}
+
+#routine-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color:white;
+ 
+   
+}
+.routine-select-display{
+    background-color:#ffbe0b;
+    color:white;
+    border:solid 1px;
+    border-color:#ff006e;
+    margin:5px;
+    height:30px;
+    width: 100%;
+    border-radius: 30px;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    
+    
+}
+
+.create-routine-btn, .edit-routine-btn{
+   display:block;
+   margin:50px;
+   height:100px;
+   width:100px;
+   border-radius: 50%;
+   border:solid 3px;
+   border-color: #ffbe0b;
+   background-color:  #ff006e;
+   color:white;
+   font-family: 'Karla', 'sans-serif';
+   font-size:12px;
+   box-shadow: var(--shadow);
+   
+}
+
+
+#start-button, .start-stop-button, .start-workout, .redirect-routine-btn{
+    height:100px;
+   width:100px;
+   border-radius: 50%;
+   border:solid 3px;
+   border-color: #ffbe0b;
+   background-color:  #ff006e;
+   color:white;
+   font-family: 'Karla', 'sans-serif';
+   font-size:12px;
+   box-shadow: var(--shadow);
+   margin:30px;
+}
+#routine-name, #current-exercise, #timer{
+    background-color: #ffbe0b;
+    border:solid 2px;
+    border-color: #ff006e;
+    width: 300px;
+    text-align: center;
+    color: black;
+    font-family: 'Karla', 'sans-serif';
+    box-shadow: var(--shadow);
+}
+.navbar{
+    position:fixed;
+  
+
+}
+
+.video-link {
+    visibility: hidden;
+}
+
+.exercise-video {
+    height: 180px;
+    width: 250px;
+}
+
+.video-display {
+    height: 200px;
+    width: 250px;
+
+    margin-bottom:10px;
+    
+}
+#button-container{
+    display:flex;
+    flex-direction: row;
+    margin:10px;
+}
+#big-container{
+    display: flex;
+    flex-direction: row;
+    margin-bottom:20px;
+    position:static;
+    
+}
+#routine-name-detail, #duration-detail {
+    background-color: #ffbe0b;
+    margin:10px;
+    height:30px;
+    text-align: center;
+    justify-content: space-around;
+    border:solid 2px;
+    border-color: #ff006e;
+    box-shadow: var(--shadow);
+}
+#routine-name-detail{
+    margin-top:20px;
+}
+#exercises-list-detail{
+    background-color: #ffbe0b;
+    margin:10px;
+    border:solid 2px;
+    border-color: #ff006e;
+    box-shadow: var(--shadow);
+    
+}
+.exercise-workout-list{
+    background-color: #ffbe0b;
+    margin:10px;
+    box-shadow: var(--shadow);
+}
+#name-button{
+    margin:5px;
+    height:30px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Karla', 'sans-serif';
+    border:solid 3px;
+    border-color: #ffbe0b;
+    background-color:  #ff006e;
+    color:white;
+    box-shadow: var(--shadow);
+}
+
+.add-exercise-btn{
+    margin:20px;
+    height:30px;
+    width: 150px;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Karla', 'sans-serif';
+    border:solid 3px;
+    border-color: #ffbe0b;
+    background-color:  #ff006e;
+    color:white;
+    box-shadow: var(--shadow);
+}
+#name-input{
+    margin:5px;
+    height:45px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Karla', 'sans-serif';
+   border:solid 2px;
+    background-color: #ffbe0b;
+    border-color:  #ff006e;
+    box-shadow: var(--shadow);
+   
+}
+#routine-name-output{
+    background-color: #ffbe0b;
+    width:100%;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+#exercise-dropdown{
+    background-color: #ffbe0b;
+    height:50px;
+    text-align:center;
+    font-size: 15px;
+    box-shadow: var(--shadow);
+}
+.exercise{
+    background-color: #ffbe0b;
+    margin:5px;
+}
+.display-routine-selection, #edit-name-input, #edit-routine-submit{
+    margin:5px;
+    height:45px;
+    width:50%;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Karla', 'sans-serif';
+   border:solid 2px;
+    background-color: #ffbe0b;
+    border-color:  #ff006e;
+    box-shadow: var(--shadow);
+}
+.display-routine-selection{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#about, #user-story{
+    box-shadow: var(--shadow);
+    color:white;
+}
+#user-story-headline, #our-team, #meet-the-team-headline, .about-us, #edit-routine-h1, #list-of-routines-h1, #create-routine-h1{
+    box-shadow: var(--shadow);
+
+}
+#meet-the-team-headline{
+    text-align: center;
+    color:white;
+}
+#user-story-headline{
+    color:white;
+}
+.exercise-list, .exercise{
+    box-shadow: var(--shadow);
 }
