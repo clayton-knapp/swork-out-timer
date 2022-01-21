@@ -16,6 +16,7 @@ window.addEventListener('load', async() => {
     const routines = await getAllRoutines();
     for (let routine of routines) {
         const listOfRoutinesEl = renderRoutines(routine);
+        listOfRoutinesEl.classList.add('routine-select-display');
         routineListEl.append(listOfRoutinesEl);
     }
 });
