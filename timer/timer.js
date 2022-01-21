@@ -25,6 +25,7 @@ let i = 0;
 
 let exerciseTimer = '';
 let waitTimer = '';
+// eslint-disable-next-line no-unused-vars
 let restTimeout = '';
 let restTimer = '';
 
@@ -124,26 +125,6 @@ function intervalAndTimeout(durationsArray, namesArray){
 
     //display exercise name
     currentExerciseEl.textContent = namesArray[i];
-
-    //render unique stop button
-    // const tempStopButton = document.createElement('button');
-    // tempStopButton.classList.add('start-stop-button');
-    // tempStopButton.textContent = `Pause ${namesArray[i]}`;
-    // buttonContainer.append(tempStopButton);
-
-    // tempStopButton.addEventListener('click', ()=> {
-    //     if (timer) {
-    //         clearInterval(timer);
-    //     }
-    //     if (waitTimer) {
-    //         clearTimeout(waitTimer);
-    //     }
-
-    //     startButton.style.display = 'block';
-    //     startButton.textContent = `Resume ${namesArray[i]}`;
-    //     tempStopButton.style.display = 'none';
-    // });
-
 
     // run timer for selected duration
     exerciseTimer = setInterval(decrementAndDisplayTime, 1000, durationsArray, i);
