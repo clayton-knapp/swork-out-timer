@@ -44,7 +44,7 @@ window.addEventListener('load', async() => {
         exerciseWorkout.addEventListener('click', async() => {
         //fetch video links in supabase 'exercises' table
             const exerciseVideo = await getExerciseVideo(exercise.id);
-
+            videoDisplayEl.textContent = '';
             const videoDiv = document.createElement('iframe');
             videoDiv.classList.add('exercise-video') ;
             videoDiv.src = exerciseVideo.video_link;
@@ -67,18 +67,6 @@ function convertTimeToMinAndSeconds(value) {
     return minutes + ':' + seconds; // Return is HH : MM : SS
 }
 
-// async function displayExerciseVideo() {
-//     const getRoutine = await getOneRoutineAndExercises();
-//     const routineName = getRoutine[0].routines.name;
-//     routineNameEl.textContent = `${routineName}`;
-
-//     for (const exercise of getRoutine[0].routines.exercises) {
-//         const exerciseWorkout = renderExercises(exercise);   
-//         exerciseListEl.append(exerciseWorkout);
-//     }
-    
-    
-// }
 startWorkoutBtnEl.addEventListener('click', () => {
     window.location.href = `../timer/?id=${id}`;
 
