@@ -1,5 +1,5 @@
 import { checkAuth, logout, getAllRoutines } from '../fetch-utils.js';
-import { renderRoutines } from '../render-utils.js';
+import { renderRoutine } from '../render-utils.js';
 
 checkAuth();
 
@@ -15,9 +15,10 @@ logoutButton.addEventListener('click', () => {
 window.addEventListener('load', async() => {
     const routines = await getAllRoutines();
     for (let routine of routines) {
-        const listOfRoutinesEl = renderRoutines(routine);
-        listOfRoutinesEl.classList.add('routine-select-display');
-        routineListEl.append(listOfRoutinesEl);
+        // small naming thing: this looks like it renders only a single routine, not a list
+        const routineEl = renderRoutine(routine);
+        routineEl.classList.add('routine-select-display');
+        routineListEl.append(routineEl);
     }
 });
 

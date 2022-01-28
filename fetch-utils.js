@@ -48,7 +48,8 @@ export async function getOneRoutineAndExercises(routineID) {
     const response = await client
         .from('junctions')
         .select('*, routines (*, exercises (*))')
-        .match({ routine_id: routineID });
+        .match({ routine_id: routineID })
+        .single(); // seems like .single() would prevent you from having to do the [0] thing when you call this function
 
     return checkError(response);
 }
@@ -57,7 +58,7 @@ export async function updateRoutineName(name, id) {
     const response = await client
         .from('routines')
         .update({ name: name })
-        .match({ id: id });
+        .match({ id });
 
     return checkError(response);
 }
@@ -76,7 +77,7 @@ export async function deleteOneRoutine(id) {
     const response = await client
         .from('routines')
         .delete()
-        .match({ id: id });
+        .match({ id });
         
         // .select()
     return checkError(response);
@@ -138,6 +139,8 @@ export async function signInUser(email, password){
 
     return response.user;
 }
+
+// interesting! would have been cool to see this working
 export async function signInUserFB(){
     const response = await client.auth.signIn({ provider: 'facebook' });
 
