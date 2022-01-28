@@ -1,6 +1,7 @@
 import { getAllRoutinesByUserID } from './fetch-utils.js';
 
-export function renderRoutines(routine) {
+// again, seems like this renders a single routine, so not plural
+export function renderRoutine(routine) {
     const routineLink = document.createElement('a');
     routineLink.href = `../routine-detail/?id=${routine.id}`;
 
@@ -12,7 +13,8 @@ export function renderRoutines(routine) {
 }
 
 
-export function renderExercises(exercise) {
+// only renders one exercise
+export function renderExercise(exercise) {
     const div = document.createElement('div');
     const exerciseLink = document.createElement('a');
     const videoDiv = document.createElement('div');

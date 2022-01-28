@@ -16,27 +16,26 @@ logoutButton.addEventListener('click', () => {
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
-let arr = [];
 
 window.addEventListener('load', async() => {
     // const params = new URLSearchParams(window.location.search);
     // const id = params.get('id');
-    const getRoutine = await getOneRoutineAndExercises(id);
+    // if you need this to be an array, you can destructure it here. I recommend changing it to not be an array in the function, so this is just an illustration
+    const [routine] = await getOneRoutineAndExercises(id);
 
-    const routineName = getRoutine[0].routines.name;
-    routineNameEl.textContent = `${routineName}`;
+    const routineName = routine.routines.name;
+    routineNameEl.textContent = routineName; //this is already a string
+
     //display total duration
-    for (let duration of getRoutine[0].routines.exercises) {
-        arr.push(duration.duration);
-        let sum = 0;
-        sum = arr.reduce((a, b) => {
-            return a + b;
-        });
+    const exercises = routine.routines.exercises;
+
+    const durations = exercises.map(duration => duration.duration);
+
+    const durationsSum = durations.reduce((a, b) => a + b, 0);
         
-        durationEl.textContent = `Duration: ${convertTimeToMinAndSeconds(sum)} min`;
-    }
+    durationEl.textContent = `Duration: ${convertTimeToMinAndSeconds(durationsSum)} min`;
     
-    for (const exercise of getRoutine[0].routines.exercises) {
+    for (const exercise of routine.routines.exercises) {
         const exerciseWorkout = renderExercises(exercise);   
         exerciseListEl.append(exerciseWorkout);
 
@@ -54,7 +53,7 @@ window.addEventListener('load', async() => {
     }
 });
 
-
+// might be nice to move this into a utils file, since it's pure and potentially reusable
 function convertTimeToMinAndSeconds(value) {
     const sec = parseInt(value, 10); // convert value to number if it's string
     // let hours   = Math.floor(sec / 3600); // get hours
@@ -62,8 +61,8 @@ function convertTimeToMinAndSeconds(value) {
     let seconds = sec - (minutes * 60); //  get seconds
     // add 0 if value < 10; Example: 2 => 02
     // if (hours   < 10) {hours   = "0"+hours;}
-    if (minutes < 10) {minutes = '0' + minutes;}
-    if (seconds < 10) {seconds = '0' + seconds;}
+    if (minutes < 10) minutes = '0' + minutes;
+    if (seconds < 10) seconds = '0' + seconds;
     return minutes + ':' + seconds; // Return is HH : MM : SS
 }
 

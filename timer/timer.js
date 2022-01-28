@@ -1,3 +1,5 @@
+/* a lot of my refactoring here is kind of a guess, but it's a gesture toward creating a file that's a bit easier to maintain. I say that because I found this file pretty challenging to read, so I can't guarantee that my refactor doesn't break other features. One of the effects of clean coade is the sense that you can safely refactor without worriyng about other features, and this file, for all its impressive work, would be really challenging for a coder to maintain. Breaking this work down into smaller functions with clear names could do some work toward making this file more approachable.
+*/
 import { checkAuth, getOneRoutineAndExercises, logout } from '../fetch-utils.js';
 
 checkAuth();
@@ -123,110 +125,43 @@ endButton.addEventListener('click', () =>{
     
 });
 
-
-function intervalAndTimeout(durationsArray, namesArray){
-
-    if (isRest === false) {
-        //clear button container
-        buttonContainer.textContent = '';
-    
-        // display initial duration
-        if (durationsArray[i] < 10) {
-            timerEl.textContent = `00:0${ durationsArray[i] }`;
-        }
-        else if (durationsArray[i] >= 10){
-            timerEl.textContent = `00:${ durationsArray[i] }`;
-        }
-    
-        //display exercise name
-        currentExerciseEl.textContent = namesArray[i];
-    
-        // run timer for selected duration
-        exerciseTimer = setInterval(decrementAndDisplayExercise, 1000, durationsArray, i);
-    
-        // log index
-        console.log('i=', i);
-        
-        // sets timeout for current duration, then increments[i], then reruns function recursively
-        waitTimer = setTimeout(()=>{
-            // raises rest flag as next thing is a rest timer
-            isRest = true;
-
-            // checks if we are at the end of the array, and if we are doesnt run
-            if (i !== (justDurations.length - 1)) {
-
-                // display initial rest
-                if (restTime < 10) {
-                    timerEl.textContent = `00:0${ restTime }`;
-                }
-                else if (restTime >= 10){
-                    timerEl.textContent = `00:${ restTime }`;
-                }
-    
-                // displays Rest
-                currentExerciseEl.textContent = 'Rest';
-    
-                // run rest timer
-                restTimer = setInterval(decrementAndDisplayRest, 1000);
-    
-                // sets rest Timeout then executes next exercise timer
-                restTimeout = setTimeout(()=> {
-                    //lowers rest flag as next thing executing is exercise timer
-                    isRest = false;
-
-                    //increments index
-                    i++;
-                    
-                    //RECURSION HERE
-                    intervalAndTimeout(durationsArray, namesArray, i);
-                }, restTime * 1000 + 1000);
-            } 
-            //if we are at the end of the array, complete the workout
-            else if (i === (justDurations.length - 1)) {
-                console.log('workout complete');
-                currentExerciseEl.textContent = 'WORKOUT COMPLETE!';
-                timerEl.textContent = `NICE!`;
-                pauseButton.style.display = 'none';
-            }
-            
-    
-        }, durationsArray[i] * 1000 + 1000);
+function displayRestTime() {
+    if (restTime < 10) {
+        timerEl.textContent = `00:0${ restTime }`;
     }
-    // this conditionally is for if we pause in a rest and resume, we skip the exercise timer and just run the rest timer
-    else if (isRest === true) {
-        // checks if we are at the end of the array, and if we are doesnt run
-        if (i !== (justDurations.length - 1)) {
-            // display initial rest
-            if (restTime < 10) {
-                timerEl.textContent = `00:0${ restTime }`;
-            }
-            else if (restTime >= 10){
-                timerEl.textContent = `00:${ restTime }`;
-            }
-    
-            // displays Rest
-            currentExerciseEl.textContent = 'Rest';
-    
-            // run rest timer
-            restTimer = setInterval(decrementAndDisplayRest, 1000);
-    
-            // sets rest Timeout then executes next exercise timer
-            restTimeout = setTimeout(()=> {
-                //lowers rest flag as next thing executing is exercise duration
-                isRest = false;
-
-                //increments index
-                i++;
-
-                // RECURSION HERE
-                intervalAndTimeout(durationsArray, namesArray, i); 
-            }, restTime * 1000 + 1000);
-        }
+    else if (restTime >= 10){
+        timerEl.textContent = `00:${ restTime }`;
     }
-
-
 }
 
+function whenArrayIsDone(durationsArray, namesArray) {
+    displayRestTime();
+                    // displays Rest
+    currentExerciseEl.textContent = 'Rest';
+        
+                    // run rest timer
+    restTimer = setInterval(decrementAndDisplayRest, 1000);
+        
+                    // sets rest Timeout then executes next exercise timer
+    restTimeout = setTimeout(()=> {
+                        //lowers rest flag as next thing executing is exercise timer
+        isRest = false;
+                        //increments index
+        i++;               
+                        //RECURSION HERE
+        intervalAndTimeout(durationsArray, namesArray, i);
+    }, restTime * 1000 + 1000);
+    
+}
+
+function renderDurations(durationsArray) {
+    if (durationsArray[i] < 10) {
+        timerEl.textContent = `00:0${ durationsArray[i] }`;
+    }
+    else if (durationsArray[i] >= 10){
+        timerEl.textContent = `00:${ durationsArray[i] }`;
+    }
+}
 
 function decrementAndDisplayExercise(durationsArray, i){
     //check if duration > 0
@@ -235,12 +170,7 @@ function decrementAndDisplayExercise(durationsArray, i){
         durationsArray[i]--;
 
         //display remaining duration
-        if (durationsArray[i] < 10) {
-            timerEl.textContent = `00:0${ durationsArray[i] }`;
-        }
-        else if (durationsArray[i] >= 10){
-            timerEl.textContent = `00:${ durationsArray[i] }`;
-        }
+        renderDurations(durationsArray);
         console.log(durationsArray);
     }
 
@@ -265,12 +195,7 @@ function decrementAndDisplayRest() {
         restTime--;
 
         //displays remaining rest time
-        if (restTime < 10) {
-            timerEl.textContent = `00:0${ restTime }`;
-        }
-        else if (restTime >= 10){
-            timerEl.textContent = `00:${ restTime }`;
-        }
+        displayRestTime();
         console.log('rest time:', restTime);
     }
 
@@ -289,4 +214,48 @@ function decrementAndDisplayRest() {
         restTime = restDropdown.value;
     }
 
+}
+
+function intervalAndTimeout(durationsArray, namesArray){
+    if (!isRest) {
+        buttonContainer.textContent = '';
+        renderDurations(durationsArray);
+        currentExerciseEl.textContent = namesArray[i];
+        exerciseTimer = setInterval(decrementAndDisplayExercise, 1000, durationsArray, i);
+    
+        // log index
+        console.log('i=', i);
+        
+        // sets timeout for current duration, then increments[i], then reruns function recursively
+
+        const durationPlusOneSecond = durationsArray[i] * 1000 + 1000;
+
+        const beginRestAndMoveOn = () => {
+            // raises rest flag as next thing is a rest timer
+            isRest = true;
+
+            // checks if we are at the end of the array, and if we are doesnt run
+            if (i !== (justDurations.length - 1)) {
+                whenArrayIsDone(durationsArray, namesArray);
+            } 
+            //if we are at the end of the array, complete the workout
+            else if (i === (justDurations.length - 1)) {
+                console.log('workout complete');
+                currentExerciseEl.textContent = 'WORKOUT COMPLETE!';
+                timerEl.textContent = `NICE!`;
+                pauseButton.style.display = 'none';
+            }
+            
+    
+        };
+
+        waitTimer = setTimeout(beginRestAndMoveOn, durationPlusOneSecond);
+    }
+    // this conditionally is for if we pause in a rest and resume, we skip the exercise timer and just run the rest timer
+    else {
+        // checks if we are at the end of the array, and if we are doesnt run
+        if (i !== (justDurations.length - 1)) {
+            whenArrayIsDone(durationsArray, namesArray);
+        }
+    }
 }

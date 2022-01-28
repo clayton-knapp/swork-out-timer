@@ -24,10 +24,11 @@ logoutButton.addEventListener('click', () => {
 deleteButton.addEventListener('click', async() => {
   
     id = routineListEl.value;
-    const exercises = await getOneRoutineAndExercises(id);
+    // seems like this returns a single routine, and not 'exercises'?
+    const [routine] = await getOneRoutineAndExercises(id);
 
 
-    if (confirm(`Are you sure you want to delete Routine: ${exercises[0].routines.name}`)) {
+    if (confirm(`Are you sure you want to delete Routine: ${routine.routines.name}`)) {
         await deleteOneRoutineAndExercises(id);
         await deleteOneRoutine(id);
         routineListEl.textContent = '';
@@ -92,8 +93,9 @@ formEl.addEventListener('submit', async(e) => {
     routineListEl.textContent = '';
     await renderRoutinesInEdit(routineListEl);
     let newId = routineListEl.value;
-    const exercises = await getOneRoutineAndExercises(newId);
-    renderExerciseOptions(exercises);
+    // again, seems like a routine, not an exercise, according to the function name?
+    const [routine] = await getOneRoutineAndExercises(newId);
+    renderExerciseOptions(routine);
     formEl.reset();
 
 });
@@ -114,9 +116,9 @@ formEl.addEventListener('submit', async(e) => {
 // });
 
 
-function renderExerciseOptions(exercises) {
+function renderExerciseOptions(routine) {
     exerciseListEl.textContent = '';
-    for (const exercise of exercises[0].routines.exercises) {
+    for (const exercise of routine.routines.exercises) {
         const wrapper = document.createElement('div');
         const deleteIcon = document.createElement('img');
     // deleteIcon.src = '../assets/bin.png';

@@ -14,8 +14,6 @@ const nameButtonEL = document.getElementById('name-button');
 
 let routineID = 0;
 
-
-
 checkAuth();
 
 window.addEventListener('load', async() => {
@@ -24,15 +22,13 @@ window.addEventListener('load', async() => {
     for (let exercise of exercises) {
         const optionEL = document.createElement('option');
 
-        optionEL.textContent = `${exercise.name} - ${exercise.duration} seconds`;
+        optionEL.textContent = makeExerciseString(exercise);
         optionEL.value = exercise.id;
 
         exerciseDropdownEL.append(optionEL);
     }
 
-    exerciseDropdownEL.disabled = true;
-    addExerciseBtnEL.disabled = true;
-    redirectRoutineBtnEL.disabled = true;
+    setDisabled(true);
 });
 
 formEL.addEventListener('submit', async(e) => {
@@ -46,9 +42,7 @@ formEL.addEventListener('submit', async(e) => {
 
     formEL.reset();
 
-    exerciseDropdownEL.disabled = false;
-    addExerciseBtnEL.disabled = false;
-    redirectRoutineBtnEL.disabled = false;
+    setDisabled(false);
 
     nameInputEL.disabled = true;
     nameButtonEL.disabled = true;
@@ -58,10 +52,21 @@ formEL.addEventListener('submit', async(e) => {
 addExerciseBtnEL.addEventListener('click', async() => {
     const exerciseID = exerciseDropdownEL.value;
 
-    const addedExercise = await addExerciseToRoutine(routineID, exerciseID);
+    // no need to make the const if you don't use it
+    await addExerciseToRoutine(routineID, exerciseID);
 
     //fetch and display this routines list of exercises
     fetchAndDisplayExercises(routineID);
+});
+
+// add event listener for this routine detail page
+redirectRoutineBtnEL.addEventListener('click', ()=> {
+    window.location.href = `../routine-detail/?id=${routineID}`;
+});
+
+
+logoutButton.addEventListener('click', () => {
+    logout();
 });
 
 async function fetchAndDisplayExercises(routineID) {
@@ -73,7 +78,7 @@ async function fetchAndDisplayExercises(routineID) {
         const exerciseEl = document.createElement('div');
         const exerciseNameEl = document.createElement('p');
 
-        exerciseNameEl.textContent = `${exercise.name} - ${exercise.duration} seconds`;
+        exerciseNameEl.textContent = makeExerciseString(exercise);
         exerciseEl.classList.add('exercise');
 
         exerciseEl.append(exerciseNameEl);
@@ -82,12 +87,12 @@ async function fetchAndDisplayExercises(routineID) {
     }
 }
 
-// add event listener for this routine detail page
-redirectRoutineBtnEL.addEventListener('click', ()=> {
-    window.location.href = `../routine-detail/?id=${routineID}`;
-});
+function setDisabled(bool) {
+    exerciseDropdownEL.disabled = bool;
+    addExerciseBtnEL.disabled = bool;
+    redirectRoutineBtnEL.disabled = bool;
+}
 
-
-logoutButton.addEventListener('click', () => {
-    logout();
-});
+function makeExerciseString(exercise) {
+    return `${exercise.name} - ${exercise.duration} seconds`;
+}
